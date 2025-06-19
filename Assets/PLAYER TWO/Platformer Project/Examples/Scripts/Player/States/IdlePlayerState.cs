@@ -1,17 +1,21 @@
 public class IdlePlayerState : PlayerState
 {
-    protected override void OnEnter(Player entity)
+    protected override void OnEnter(Player player)
     {
-        throw new System.NotImplementedException();
     }
 
-    protected override void OnExit(Player entity)
+    protected override void OnExit(Player player)
     {
-        throw new System.NotImplementedException();
     }
 
-    protected override void OnStep(Player entity)
+    protected override void OnStep(Player player)
     {
-        throw new System.NotImplementedException();
+        // 输出方向
+        var inputDirection = player.inputs.GetMovementDirection();
+
+        if (inputDirection.sqrMagnitude > 0 || player.lateralVelocity.sqrMagnitude > 0)
+        {
+            player.states.Change<WalkPlayerState>();
+        }
     }
 }

@@ -10,11 +10,10 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
 {
     protected List<EntityState<T>> m_List = new List<EntityState<T>>();
     protected Dictionary<Type, EntityState<T>> m_states = new Dictionary<Type, EntityState<T>>();
-
     protected abstract List<EntityState<T>> GetStateList();
-
     public EntityState<T> current { get; private set; }
     public T entity { get; protected set; }
+    public EntityState<T> last;
 
     protected virtual void InitializeStates()
     {
@@ -47,6 +46,30 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
         if (current != null && Time.timeScale > 0)
         {
             current.Step(entity);
+        }
+    }
+
+    public virtual void Change<TState>() where TState : EntityState<T>
+    {
+        var type = typeof(TState);
+        if (m_states.ContainsKey(type))
+        {
+            Change(m_states[type]);
+        }
+    }
+
+    public virtual void Change(EntityState<T> to)
+    {
+        if (to != null && Time.timeScale > 0)
+        {
+            if (current != null)
+            {
+                current.Exit(entity);
+                last = current;
+            }
+
+            current = to;
+            current.Enter(entity);
         }
     }
 }

@@ -72,7 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257c17c40ddf4207b5d05494a8ce5e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: []
+  states:
+  - IdlePlayerState
 --- !u!1001 &6361865368257376572
 PrefabInstance:
   m_ObjectHideFlags: 0
