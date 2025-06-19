@@ -17,13 +17,23 @@ public class PlayerInputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        actions.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        
     }
+
+    protected void OnEnable()
+    {
+        actions?.Enable();
+    }
+
+    protected void OnDisable()
+    {
+        actions?.Disable();
+    }
+
 
     protected virtual void CacheActions()
     {
