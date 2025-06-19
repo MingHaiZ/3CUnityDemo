@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class EntityState<T> where T : Entity
+public abstract class EntityState<T> where T : Entity<T>
 {
     public UnityEvent onEnter;
     public UnityEvent onExit;
