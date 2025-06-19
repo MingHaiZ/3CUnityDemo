@@ -9,6 +9,7 @@ public class PlayerInputManager : MonoBehaviour
     public InputActionAsset actions;
     public float m_movementDirctionUnlock;
     protected InputAction m_movement;
+    protected Camera m_camera;
 
     protected void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerInputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_camera = Camera.main;
         actions.Enable();
     }
 
@@ -63,4 +65,16 @@ public class PlayerInputManager : MonoBehaviour
 
     // 重新矫正0-1
     private float RemapToDeadzone(float value, float deadzone) => (value - deadzone) / (1 - deadzone);
+
+    public virtual Vector3 GetMovementCameraDirection()
+    {
+        var direction = GetMovementDirection();
+        if (direction.sqrMagnitude > 0)
+        {
+            var rotation = Quaternion.AngleAxis(m_camera.transform.eulerAngles.y, Vector3.up);
+            direction = rotation * direction;
+            direction = direction.normalized;
+        }
+        return direction;
+    }
 }
