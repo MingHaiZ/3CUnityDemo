@@ -34,4 +34,21 @@ public abstract class EntityState<T> where T : Entity
     protected abstract void OnExit(T entity);
 
     protected abstract void OnStep(T entity);
+
+    public static EntityState<T> CreateFromString(string typeName)
+    {
+        return (EntityState<T>)System.Activator.CreateInstance(System.Type.GetType(typeName));
+    }
+
+    public static List<EntityState<T>> CreateListFromStringArray(string[] array)
+    {
+        var list = new List<EntityState<T>>();
+
+        foreach (var typeName in array)
+        {
+            list.Add(CreateFromString(typeName));
+        }
+
+        return list;
+    }
 }
