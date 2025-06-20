@@ -17,7 +17,10 @@ public class WalkPlayerState : PlayerState
         if (inputDirection.sqrMagnitude > 0)
         {
             var dot = Vector3.Dot(inputDirection, player.lateralVelocity);
-            player.Accelerate(inputDirection);
+            if (dot >= player.stats.current.brakeThreshold)
+            {
+                player.Accelerate(inputDirection);
+            }
         }
     }
 }

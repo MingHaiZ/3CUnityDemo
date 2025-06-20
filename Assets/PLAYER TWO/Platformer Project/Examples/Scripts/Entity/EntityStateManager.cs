@@ -15,6 +15,8 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
     public T entity { get; protected set; }
     public EntityState<T> last;
 
+    protected virtual void InitializeEntity() => entity = GetComponent<T>();
+
     protected virtual void InitializeStates()
     {
         m_List = GetStateList();
@@ -37,6 +39,7 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
 
     protected void Start()
     {
+        InitializeEntity();
         InitializeStates();
     }
 

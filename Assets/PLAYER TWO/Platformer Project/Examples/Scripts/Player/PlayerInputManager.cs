@@ -9,6 +9,7 @@ public class PlayerInputManager : MonoBehaviour
     public InputActionAsset actions;
     public float m_movementDirctionUnlock;
     protected InputAction m_movement;
+    protected InputAction m_run;
     protected Camera m_camera;
 
     protected void Awake()
@@ -41,7 +42,10 @@ public class PlayerInputManager : MonoBehaviour
     protected virtual void CacheActions()
     {
         m_movement = actions["Movement"];
+        m_run = actions["Run"];
     }
+
+    public virtual bool GetRun() => m_run.IsInProgress();
 
     public virtual Vector3 GetMovementDirection()
     {
@@ -75,6 +79,7 @@ public class PlayerInputManager : MonoBehaviour
             direction = rotation * direction;
             direction = direction.normalized;
         }
+
         return direction;
     }
 }
