@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerStats : EntityStats<PlayerStats>
 {
+    [Header("General Stats")]
+    public float rotationSpeed = 970f;
+
     [Header("Motion stats")]
     public float brakeThreshold = -0.8f;
 
@@ -9,6 +12,7 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float acceleration = 13f;
     public float topSpeed = 6f;
     public float airAcceleration = 32f;
+    public float deceleration = 28f;
 
     [Header("Running stats")]
     public float runningAcceleration = 16f;

@@ -13,6 +13,8 @@ public class Player : Entity<Player>
     public bool holding { get; protected set; }
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
+    public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction,stats.current.rotationSpeed);
+    public virtual void Decelerate() => Decelerate(stats.current.deceleration);
 
     protected override void Awake()
     {
@@ -20,7 +22,7 @@ public class Player : Entity<Player>
         InitializeInputs();
         InitializeStats();
     }
-
+    
     public virtual void Accelerate(Vector3 direction)
     {
         var turningDrag = isGrounded && inputs.GetRun()
