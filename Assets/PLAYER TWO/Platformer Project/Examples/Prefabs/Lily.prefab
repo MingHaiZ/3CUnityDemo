@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4805438794404617823}
   - component: {fileID: 5651797369211599651}
   - component: {fileID: 5910283242886582421}
+  - component: {fileID: 6430567958195860110}
   m_Layer: 0
   m_Name: Lily
   m_TagString: Untagged
@@ -74,6 +75,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257c17c40ddf4207b5d05494a8ce5e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  events:
+    onChange:
+      m_PersistentCalls:
+        m_Calls: []
+    onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    onExit:
+      m_PersistentCalls:
+        m_Calls: []
   states:
   - IdlePlayerState
   - WalkPlayerState
@@ -91,6 +102,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
   - {fileID: 11400000, guid: 00bcb4afab4c5b64b839b19378747f53, type: 2}
+--- !u!114 &6430567958195860110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219701247475986322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521191eb769178142b1773b4f6679095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: State
+  lastStateName: Last State
+  lateralSpeedName: Lateral State
+  verticalSpeedName: Vertical State
+  lateralAnimationSpeedName: Lateral Animation Speed
+  healthName: Health
+  jumpCounterName: Jump Counter
+  isGroundedName: Is Grounded
+  isHoldingName: Is Holding
+  onStateChangedName: On State Changed
+  minLateralAnimationSpeed: 0.5
+  forcedTranstions:
+  - fromStateId: 15
+    animatorLayer: 0
+    toAnimationState: Idle
+  animator: {fileID: 658501299823152301}
 --- !u!1001 &6361865368257376572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,6 +191,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
+--- !u!95 &658501299823152301 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
+  m_PrefabInstance: {fileID: 6361865368257376572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6900459822473959127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}

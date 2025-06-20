@@ -529,6 +529,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lily
       objectReference: {fileID: 0}
+    - target: {fileID: 6430567958195860110, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
+      propertyPath: lateralSpeedName
+      value: Lateral Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430567958195860110, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
+      propertyPath: verticalSpeedName
+      value: Vertical Speed
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

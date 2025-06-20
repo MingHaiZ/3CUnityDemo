@@ -9,6 +9,8 @@ public class Player : Entity<Player>
 
     public PlayerInputManager inputs { get; protected set; }
     public PlayerStatsManager stats { get; protected set; }
+    public int jumpCounter { get; protected set; }
+    public bool holding { get; protected set; }
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
 
@@ -17,7 +19,6 @@ public class Player : Entity<Player>
         base.Awake();
         InitializeInputs();
         InitializeStats();
-
     }
 
     public virtual void Accelerate(Vector3 direction)

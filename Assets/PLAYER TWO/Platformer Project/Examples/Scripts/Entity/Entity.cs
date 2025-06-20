@@ -21,15 +21,36 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
     public float acclerationMultiplier { get; set; } = 1;
 
+    public CharacterController controller { get; protected set; }
+
     public Vector3 lateralVelocity
     {
         get { return new Vector3(velocity.x, 0, velocity.z); }
         set { velocity = new Vector3(value.x, velocity.y, value.z); }
     }
 
+    public Vector3 verticalVelocity
+    {
+        get { return new Vector3(0, velocity.y, 0); }
+        set { velocity = new Vector3(velocity.x, value.y, velocity.z); }
+    }
+
+
+    protected virtual void InitializeController()
+    {
+        controller = GetComponent<CharacterController>();
+        if (!controller)
+        {
+            controller = gameObject.AddComponent<CharacterController>();
+        }
+
+        controller.skinWidth = 0.005f;
+        controller.minMoveDistance = 0;
+    }
 
     protected virtual void Awake()
     {
+        InitializeController();
         InitializeStateManager();
     }
 
@@ -41,7 +62,13 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
     protected virtual void HandleController()
     {
-        transform.position += velocity * Time.deltaTime;
+        if (controller.enabled)
+        {
+            controller.Move(velocity * Time.deltaTime);
+            return;
+        }
+
+        transform.position = velocity * Time.deltaTime;
     }
 
     public virtual void Accelerate(Vector3 direction, float turningDrag, float acceleration, float finalAcceleration,
@@ -56,10 +83,10 @@ public abstract class Entity<T> : Entity where T : Entity<T>
             var speed = Vector3.Dot(direction, lateralVelocity);
             // direction 是一个只有方向没有大小的“路标”，speed 是一个只有大小没有方向的“油门大小”。两者一乘，就得到了一个既有正确方向，又有合适大小的速度向量。这就是我们分解出的“好速度”。
             var velocity = direction * speed;
-            
+
             var turningVelocity = lateralVelocity - velocity;
             var turiningDelta = turningDrag * turningDragMultiplier * Time.deltaTime;
-            
+
             var targetTopSpeed = topSpeed * topSpeedMultiplier;
             if (lateralVelocity.magnitude < targetTopSpeed || speed < 0)
             {
