@@ -25,6 +25,13 @@ public class WalkPlayerState : PlayerState
             {
                 player.states.Change<BrakePlayerState>();
             }
+        } else
+        {
+            player.Friction();
+            if (player.lateralVelocity.sqrMagnitude <= 0)
+            {
+                player.states.Change<IdlePlayerState>();
+            }
         }
     }
 }

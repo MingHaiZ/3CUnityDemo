@@ -531,11 +531,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: states.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: states.Array.data[2]
       value: BrakePlayerState
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
+      propertyPath: states.Array.data[3]
+      value: BackflipPlayerState
       objectReference: {fileID: 0}
     - target: {fileID: 6430567958195860110, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: lateralSpeedName

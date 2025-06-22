@@ -82,4 +82,9 @@ public class PlayerInputManager : MonoBehaviour
 
         return direction;
     }
+
+    public virtual bool GetJumpDown()
+    {
+        return true;
+    }
 }

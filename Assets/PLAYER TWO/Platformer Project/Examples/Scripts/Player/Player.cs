@@ -13,8 +13,9 @@ public class Player : Entity<Player>
     public bool holding { get; protected set; }
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
-    public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction,stats.current.rotationSpeed);
+    public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);
     public virtual void Decelerate() => Decelerate(stats.current.deceleration);
+    public virtual void Friction() => Decelerate(stats.current.friction);
 
     protected override void Awake()
     {
@@ -22,7 +23,7 @@ public class Player : Entity<Player>
         InitializeInputs();
         InitializeStats();
     }
-    
+
     public virtual void Accelerate(Vector3 direction)
     {
         var turningDrag = isGrounded && inputs.GetRun()
@@ -36,6 +37,27 @@ public class Player : Entity<Player>
             : stats.current.topSpeed;
         var finalAcceleration = isGrounded ? acceleration : stats.current.airAcceleration;
 
-        Accelerate(direction, turningDrag, acceleration, finalAcceleration, topSpeed);
+        Accelerate(direction, turningDrag, acceleration, topSpeed);
+    }
+
+    // public virtual void Backflip(float force)
+    // {
+    //     if (stats.current.canBackflip)
+    //     {
+    //         verticalVelocity = Vector3.up * stats.current.backflipJumpHeight;
+    //         lateralVelocity = -transform.forward * force;
+    //         states.Change<BackflipPlayerState>();
+    //         playerEvents.OnBackflip.Invoke();
+    //     }
+    // }
+
+
+    public virtual void BackflipAcceleration()
+    {
+        var direction = inputs.GetMovementCameraDirection();
+        Accelerate(direction,
+            stats.current.backflipTurningDrag,
+            stats.current.backflipAirAcceleration,
+            stats.current.backflipTopSpeed);
     }
 }

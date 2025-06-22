@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class BrakePlayerState : PlayerState
 {
     protected override void OnEnter(Player player)
@@ -10,8 +12,21 @@ public class BrakePlayerState : PlayerState
 
     protected override void OnStep(Player player)
     {
+        // var inputDirection = player.inputs.GetMovementCameraDirection();
+        // if (player.stats.current.canBackflip
+        //     && Vector3.Dot(inputDirection, player.transform.forward) < 0
+        //     && player.inputs.GetJumpDown())
+        // {
+        //     player.Backflip(player.stats.current.backflipBackwardTurnForce);
+        // } else
+        // {
+        //     if (player.lateralVelocity.sqrMagnitude == 0)
+        //     {
+        //         player.states.Change<IdlePlayerState>();
+        //     }
+        // }
         player.Decelerate();
-        if (player.lateralVelocity.sqrMagnitude == 0)
+        if (player.lateralVelocity.magnitude == 0)
         {
             player.states.Change<IdlePlayerState>();
         }

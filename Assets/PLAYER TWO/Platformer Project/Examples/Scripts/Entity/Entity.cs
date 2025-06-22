@@ -21,6 +21,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
     public float acclerationMultiplier { get; set; } = 1;
     public float decelerationMultiplie { get; set; } = 1;
+    public float gravityMultiplier { get; set; } = 1;
 
     public CharacterController controller { get; protected set; }
 
@@ -72,8 +73,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         transform.position = velocity * Time.deltaTime;
     }
 
-    public virtual void Accelerate(Vector3 direction, float turningDrag, float acceleration, float finalAcceleration,
-        float topSpeed)
+    public virtual void Accelerate(Vector3 direction, float turningDrag, float acceleration, float topSpeed)
     {
         if (direction.sqrMagnitude > 0)
         {
@@ -116,5 +116,13 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         var delta = deceleration * decelerationMultiplie * Time.deltaTime;
         lateralVelocity = Vector3.MoveTowards(lateralVelocity, Vector3.zero, delta);
+    }
+
+    public virtual void Gravity(float gravity)
+    {
+        if (!isGrounded)
+        {
+            verticalVelocity += Vector3.down * gravity * gravityMultiplier * Time.deltaTime;
+        }
     }
 }
