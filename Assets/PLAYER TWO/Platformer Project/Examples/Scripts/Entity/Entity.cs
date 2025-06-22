@@ -5,15 +5,7 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-}
-
-public abstract class Entity<T> : Entity where T : Entity<T>
-{
-    public EntityStateManager<T> states { get; protected set; }
-
-    protected virtual void HandleState() => states.Step();
-
-    protected virtual void InitializeStateManager() => states = GetComponent<EntityStateManager<T>>();
+    public EntityEvents entityEvents;
     public bool isGrounded { get; set; } = true;
     public Vector3 velocity { get; set; }
     public float turningDragMultiplier { get; set; } = 1;
@@ -37,6 +29,34 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         set { velocity = new Vector3(velocity.x, value.y, velocity.z); }
     }
 
+    public float height => controller.height;
+    protected readonly float m_groundOffset = 0.1f;
+    public float radius => controller.radius;
+    public Vector3 center => controller.center;
+    public Vector3 position => transform.position;
+    public float lastGroundTime { get; protected set; }
+    public Vector3 stepPosition => position - transform.up * (height * 0.5f - controller.stepOffset);
+    public RaycastHit groundHit;
+}
+
+public abstract class Entity<T> : Entity where T : Entity<T>
+{
+    public EntityStateManager<T> states { get; protected set; }
+
+    protected virtual void HandleState() => states.Step();
+
+    protected virtual void InitializeStateManager() => states = GetComponent<EntityStateManager<T>>();
+
+    public virtual bool IsPointUnderStep(Vector3 point) => stepPosition.y > point.y;
+
+    public virtual bool SphereCast(Vector3 direction, float distance, out RaycastHit hit,
+        int layerMask = Physics.DefaultRaycastLayers,
+        QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore)
+    {
+        var castDistance = Mathf.Abs(distance - radius);
+        return Physics.SphereCast(position, radius, direction, out hit, castDistance, layerMask,
+            queryTriggerInteraction);
+    }
 
     protected virtual void InitializeController()
     {
@@ -56,10 +76,21 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         InitializeStateManager();
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
-        HandleState();
-        HandleController();
+        if (controller.enabled)
+        {
+            HandleGround();
+        }
+    }
+
+    protected virtual void Update()
+    {
+        if (controller.enabled)
+        {
+            HandleState();
+            HandleController();
+        }
     }
 
     protected virtual void HandleController()
@@ -117,5 +148,56 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         var delta = deceleration * decelerationMultiplie * Time.deltaTime;
         lateralVelocity = Vector3.MoveTowards(lateralVelocity, Vector3.zero, delta);
     }
-    
+
+    public virtual void HandleGround()
+    {
+        var distance = (height * 0.5f) + m_groundOffset;
+        if (SphereCast(Vector3.down, distance, out var hit) && verticalVelocity.y <= 0)
+        {
+            if (!isGrounded)
+            {
+                if (EvaluateLanding(hit))
+                {
+                    EnterGround(hit);
+                } else
+                {
+                    HandleHighLedge(hit);
+                }
+            } else
+            {
+                ExitGround();
+            }
+        }
+    }
+
+    protected virtual void HandleHighLedge(RaycastHit hit)
+    {
+    }
+
+    protected virtual void EnterGround(RaycastHit hit)
+    {
+        if (!isGrounded)
+        {
+            groundHit = hit;
+            isGrounded = true;
+            entityEvents.OnGroundEnter?.Invoke();
+        }
+    }
+
+    protected virtual void ExitGround()
+    {
+        if (isGrounded)
+        {
+            isGrounded = false;
+            transform.parent = null;
+            lastGroundTime = Time.time;
+            verticalVelocity = Vector3.Max(verticalVelocity, Vector3.zero);
+            entityEvents.OnGroundExit?.Invoke();
+        }
+    }
+
+    protected virtual bool EvaluateLanding(RaycastHit hit)
+    {
+        return IsPointUnderStep(hit.point) && Vector3.Angle(hit.normal, Vector3.up) < controller.slopeLimit;
+    }
 }
