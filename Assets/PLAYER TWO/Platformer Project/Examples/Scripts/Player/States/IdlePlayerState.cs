@@ -10,6 +10,7 @@ public class IdlePlayerState : PlayerState
 
     protected override void OnStep(Player player)
     {
+        player.Gravity();
         player.Friction();
         // 输出方向
         var inputDirection = player.inputs.GetMovementDirection();
