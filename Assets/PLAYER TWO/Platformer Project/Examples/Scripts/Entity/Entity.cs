@@ -163,10 +163,10 @@ public abstract class Entity<T> : Entity where T : Entity<T>
                 {
                     HandleHighLedge(hit);
                 }
-            } else
-            {
-                ExitGround();
-            }
+            } 
+        }else
+        {
+            ExitGround();
         }
     }
 
