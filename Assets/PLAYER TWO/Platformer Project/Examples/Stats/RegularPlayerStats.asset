@@ -12,11 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab6124f50704b739ca3652b906d6d31, type: 3}
   m_Name: RegularPlayerStats
   m_EditorClassIdentifier: 
+  rotationSpeed: 970
+  friction: 16
+  gravityTopSpeed: 50
+  gravity: 38
+  fallGravity: 65
   brakeThreshold: -0.8
   turningDrag: 28
   acceleration: 13
   topSpeed: 6
   airAcceleration: 32
+  deceleration: 28
   runningAcceleration: 16
-  runningTopSpeed: 7.5
+  runningTopSpeed: 8.5
   runningTurnningDrag: 14
+  canBackflip: 1
+  backflipJumpHeight: 23
+  backflipGravity: 35
+  backflipTurningDrag: 2.5
+  backflipAirAcceleration: 12
+  backflipTopSpeed: 7.5
+  backflipBackwardTurnForce: 8
+  multiJumps: 1
+  coyoteJumpThreshold: 0.15
+  maxJumpHeight: 17
+  minJumpHeight: 10
