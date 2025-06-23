@@ -37,6 +37,8 @@ public abstract class Entity : MonoBehaviour
     public float lastGroundTime { get; protected set; }
     public Vector3 stepPosition => position - transform.up * (height * 0.5f - controller.stepOffset);
     public RaycastHit groundHit;
+    public float originalHeight { get; protected set; }
+    public Vector3 unsizePosition => position - transform.up * height * 0.5f + transform.up * originalHeight * 0.5f;
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>
@@ -68,6 +70,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
         controller.skinWidth = 0.005f;
         controller.minMoveDistance = 0;
+        originalHeight = controller.height;
     }
 
     protected virtual void Awake()
@@ -163,8 +166,8 @@ public abstract class Entity<T> : Entity where T : Entity<T>
                 {
                     HandleHighLedge(hit);
                 }
-            } 
-        }else
+            }
+        } else
         {
             ExitGround();
         }
