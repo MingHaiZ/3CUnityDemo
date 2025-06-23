@@ -37,7 +37,7 @@ public class Player : Entity<Player>
             : stats.current.topSpeed;
         var finalAcceleration = isGrounded ? acceleration : stats.current.airAcceleration;
 
-        Accelerate(direction, turningDrag, acceleration, topSpeed);
+        Accelerate(direction, turningDrag, finalAcceleration, topSpeed);
     }
 
     // public virtual void Backflip(float force)

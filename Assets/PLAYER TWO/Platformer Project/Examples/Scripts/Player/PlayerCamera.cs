@@ -32,8 +32,8 @@ public class PlayerCamera : MonoBehaviour
     [Range(0, 90)]
     public float verticalMaxRotation = 80f;
 
-    [Range(0,90)]
-    public float verticalMinRotation = 20f;
+    [Range(-90, 0)]
+    public float verticalMinRotation = -20f;
 
     protected CinemachineVirtualCamera m_camera;
     protected Cinemachine3rdPersonFollow m_cameraBody;
@@ -79,6 +79,8 @@ public class PlayerCamera : MonoBehaviour
         m_cameraTargetPitch = initialAngle;
         m_cameraTargetYaw = player.transform.rotation.eulerAngles.y;
         m_cameraTargetPosition = player.unsizePosition + Vector3.up * heightOffset;
+        MoveTarget();
+        m_brain.ManualUpdate();
     }
 
     protected virtual void MoveTarget()
@@ -133,7 +135,7 @@ public class PlayerCamera : MonoBehaviour
                 targetHeight += Mathf.Min(offset, maxVerticalSpeed * Time.deltaTime);
             } else if (target.y < previousPosition.y - verticalDownDeadZone)
             {
-                var offset = target.y - previousPosition.y + verticalUpDeadZone;
+                var offset = target.y - previousPosition.y + verticalDownDeadZone;
                 targetHeight += Mathf.Max(offset, -maxVerticalSpeed * Time.deltaTime);
             }
         } else if (target.y > previousPosition.y + verticalAirUpDeadZone)
@@ -169,8 +171,6 @@ public class PlayerCamera : MonoBehaviour
         InitializeComponent();
         InitializeFollower();
         InitializeCamera();
-        MoveTarget();
-        m_brain.ManualUpdate();
     }
 
     public void LateUpdate()
