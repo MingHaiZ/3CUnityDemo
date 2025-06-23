@@ -35,6 +35,8 @@ public abstract class EntityState<T> where T : Entity<T>
 
     protected abstract void OnStep(T entity);
 
+    public abstract void OnContact(T entity, Collider other);
+
     public static EntityState<T> CreateFromString(string typeName)
     {
         return (EntityState<T>)System.Activator.CreateInstance(System.Type.GetType(typeName));

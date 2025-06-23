@@ -3,19 +3,20 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/**
+ * 这个类为可收集物品
+ */
 [RequireComponent(typeof(Collider))]
 public class Collectable : MonoBehaviour
 {
     [Header("General Settings")]
     public GameObject display;
 
+    public ParticleSystem particle;
+    public float ghostingDuration = 0.5f;
     public bool collectOnContact = true;
     public AudioClip clip;
     public int times = 1;
-
-    public ParticleSystem particle;
-
-    public float ghostingDuration = 0.5f;
 
     [Header("Visibility Settings")]
     public bool hidden;
@@ -59,6 +60,7 @@ public class Collectable : MonoBehaviour
     protected const int k_horizontalMaxRotation = 360;
 
 
+    // 初始化获取音效Component
     protected virtual void InitializeAudio()
     {
         if (!TryGetComponent(out m_audioSource))
@@ -67,6 +69,7 @@ public class Collectable : MonoBehaviour
         }
     }
 
+    // 初始化当前的Collider
     protected virtual void InitializeCollider()
     {
         m_collider = GetComponent<Collider>();
@@ -112,12 +115,14 @@ public class Collectable : MonoBehaviour
         }
     }
 
+    /**
+     * 消失
+     */
     protected virtual void Vanish()
     {
         if (!m_vanished)
         {
             m_vanished = true;
-            m_elapseGhostingTime = 0;
             m_elapseLeftTime = 0;
             display.SetActive(false);
             m_collider.enabled = false;
@@ -143,10 +148,12 @@ public class Collectable : MonoBehaviour
 
     protected virtual void HandleSweep()
     {
+        
         var direction = m_velocity.normalized;
         var magnitude = m_velocity.magnitude;
         var distance = magnitude * Time.deltaTime;
 
+        
         if (Physics.SphereCast(transform.position, collisionRadius, direction, out var hit, distance,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
@@ -168,10 +175,14 @@ public class Collectable : MonoBehaviour
         transform.position += m_velocity * Time.deltaTime;
     }
 
+    /**
+     * 收集
+     */
     public virtual void Collect(Player player)
     {
-        if (!m_vanished && !m_ghosting)
+        if (m_vanished && !m_ghosting)
         {
+            // ghosting 就是在金币从箱子里面爆出来的时候不要立刻能够吃到，直到ghosting结束了才能吃到
             if (!hidden)
             {
                 Vanish();
@@ -194,7 +205,7 @@ public class Collectable : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             m_audioSource.Stop();
-            m_audioSource.PlayOneShot(collisionClip);
+            m_audioSource.PlayOneShot(clip);
             onCollect?.Invoke(player);
             yield return new WaitForSeconds(0.1f);
         }
@@ -206,6 +217,8 @@ public class Collectable : MonoBehaviour
         var initialPosition = transform.position;
         var targetPosition = initialPosition + Vector3.up * quickShowHeight;
 
+        print("Show Display");
+        
         display.SetActive(true);
         m_collider.enabled = false;
 
@@ -221,6 +234,8 @@ public class Collectable : MonoBehaviour
         yield return new WaitForSeconds(hideDuration);
         transform.position = initialPosition;
         Vanish();
+        // 金币收集完了，这个对象就没有用了，所以把它关掉
+        gameObject.SetActive(false);
     }
 
     protected void Awake()
@@ -246,7 +261,8 @@ public class Collectable : MonoBehaviour
         }
     }
 
-    protected void OnTriggerStay(Collider other)
+    //这里原来是stay,原先的判定范围是上半身,所以会出现很多次判定
+    protected void OnTriggerEnter(Collider other)
     {
         if (collectOnContact && other.CompareTag(GameTag.Player))
         {
@@ -257,7 +273,7 @@ public class Collectable : MonoBehaviour
         }
     }
 
-    
+
     protected void OnDrawGizmos()
     {
         if (usePhysics)

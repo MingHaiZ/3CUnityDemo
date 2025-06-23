@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class FallPlayerState : PlayerState
 {
     protected override void OnEnter(Player player)
@@ -17,5 +19,10 @@ public class FallPlayerState : PlayerState
         {
             player.states.Change<IdlePlayerState>();
         }
+    }
+
+    public override void OnContact(Player player, Collider other)
+    {
+        player.PushRigidbody(other);
     }
 }

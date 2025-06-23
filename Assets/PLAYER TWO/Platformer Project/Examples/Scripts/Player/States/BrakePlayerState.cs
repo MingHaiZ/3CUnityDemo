@@ -33,4 +33,10 @@ public class BrakePlayerState : PlayerState
             player.states.Change<IdlePlayerState>();
         }
     }
+
+    public override void OnContact(Player entity, Collider other)
+    {
+        
+        
+    }
 }

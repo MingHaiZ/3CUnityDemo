@@ -170,11 +170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 915633603}
+  particle: {fileID: 1801081554}
+  ghostingDuration: 0.5
   collectOnContact: 1
   clip: {fileID: 8300000, guid: 1170fdadbd6bf0b46b820aae14f65e17, type: 3}
   times: 1
-  particle: {fileID: 1801081554}
-  ghostingDuration: 0.5
   hidden: 1
   quickShowHeight: 2
   quickShowDuration: 0.25
@@ -19897,11 +19897,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1062189231}
+  particle: {fileID: 476432036}
+  ghostingDuration: 0.5
   collectOnContact: 1
   clip: {fileID: 8300000, guid: 1170fdadbd6bf0b46b820aae14f65e17, type: 3}
   times: 1
-  particle: {fileID: 476432036}
-  ghostingDuration: 0.5
   hidden: 1
   quickShowHeight: 2
   quickShowDuration: 0.25
@@ -44849,7 +44849,7 @@ Transform:
   m_GameObject: {fileID: 1153396674}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45126,11 +45126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1219886121}
+  particle: {fileID: 817602278}
+  ghostingDuration: 0.5
   collectOnContact: 1
   clip: {fileID: 8300000, guid: 1170fdadbd6bf0b46b820aae14f65e17, type: 3}
   times: 1
-  particle: {fileID: 817602278}
-  ghostingDuration: 0.5
   hidden: 1
   quickShowHeight: 2
   quickShowDuration: 0.25
@@ -50202,11 +50202,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1047289462}
+  particle: {fileID: 759755195}
+  ghostingDuration: 0.5
   collectOnContact: 1
   clip: {fileID: 8300000, guid: 1170fdadbd6bf0b46b820aae14f65e17, type: 3}
   times: 1
-  particle: {fileID: 759755195}
-  ghostingDuration: 0.5
   hidden: 1
   quickShowHeight: 2
   quickShowDuration: 0.25
@@ -50295,11 +50295,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 226867508}
+  particle: {fileID: 1130412084}
+  ghostingDuration: 0.5
   collectOnContact: 1
   clip: {fileID: 8300000, guid: 1170fdadbd6bf0b46b820aae14f65e17, type: 3}
   times: 1
-  particle: {fileID: 1130412084}
-  ghostingDuration: 0.5
   hidden: 1
   quickShowHeight: 2
   quickShowDuration: 0.25
@@ -50463,29 +50463,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lily
       objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.data[2]
-      value: BrakePlayerState
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.data[3]
-      value: FallPlayerState
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.data[4]
-      value: BackflipPlayerState
-      objectReference: {fileID: 0}
-    - target: {fileID: 6430567958195860110, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: lateralSpeedName
-      value: Lateral Speed
-      objectReference: {fileID: 0}
-    - target: {fileID: 6430567958195860110, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: verticalSpeedName
-      value: Vertical Speed
+    - target: {fileID: 2219701247475986322, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

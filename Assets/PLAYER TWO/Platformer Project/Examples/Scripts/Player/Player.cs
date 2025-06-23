@@ -16,12 +16,14 @@ public class Player : Entity<Player>
     public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);
     public virtual void Decelerate() => Decelerate(stats.current.deceleration);
     public virtual void Friction() => Decelerate(stats.current.friction);
+    public virtual void InitializeTag() => tag = GameTag.Player;
 
     protected override void Awake()
     {
         base.Awake();
         InitializeInputs();
         InitializeStats();
+        InitializeTag();
     }
 
     public virtual void Accelerate(Vector3 direction)
@@ -107,5 +109,14 @@ public class Player : Entity<Player>
         verticalVelocity = Vector3.up * height;
         states.Change<FallPlayerState>();
         playerEvents.OnJump?.Invoke();
+    }
+
+    public virtual void PushRigidbody(Collider other)
+    {
+        if (!IsPointUnderStep(other.bounds.max) && other.TryGetComponent(out Rigidbody rigidbody))
+        {
+            var force = lateralVelocity * stats.current.pushForce;
+            rigidbody.velocity += force / rigidbody.mass * Time.deltaTime;
+        }
     }
 }

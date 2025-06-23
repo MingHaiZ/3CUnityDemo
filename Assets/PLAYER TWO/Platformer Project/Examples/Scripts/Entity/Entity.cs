@@ -39,6 +39,11 @@ public abstract class Entity : MonoBehaviour
     public RaycastHit groundHit;
     public float originalHeight { get; protected set; }
     public Vector3 unsizePosition => position - transform.up * height * 0.5f + transform.up * originalHeight * 0.5f;
+
+    protected Collider[] m_contactBuffer = new Collider[10];
+    protected CapsuleCollider m_collider;
+    
+    public virtual bool IsPointUnderStep(Vector3 point) => stepPosition.y > point.y;
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>
@@ -77,13 +82,15 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         InitializeController();
         InitializeStateManager();
+        InitializeCollider();
     }
 
     protected void FixedUpdate()
     {
-        if (controller.enabled)
+        if (controller.enabled || m_collider)
         {
             HandleGround();
+            HandleContacts();
         }
     }
 
@@ -94,6 +101,16 @@ public abstract class Entity<T> : Entity where T : Entity<T>
             HandleState();
             HandleController();
         }
+    }
+
+    protected virtual void InitializeCollider()
+    {
+        m_collider = gameObject.AddComponent<CapsuleCollider>();
+        m_collider.height = controller.height;
+        m_collider.radius = controller.radius;
+        m_collider.center = controller.center;
+        m_collider.isTrigger = true;
+        m_collider.enabled = false;
     }
 
     protected virtual void HandleController()
@@ -196,6 +213,53 @@ public abstract class Entity<T> : Entity where T : Entity<T>
             lastGroundTime = Time.time;
             verticalVelocity = Vector3.Max(verticalVelocity, Vector3.zero);
             entityEvents.OnGroundExit?.Invoke();
+        }
+    }
+
+    // 处理碰撞
+    protected virtual void HandleContacts()
+    { 
+        
+        int overlaps = OverlapEntity(m_contactBuffer);
+        
+        for (int i = 0; i < overlaps; i++)
+        {
+            if (!m_contactBuffer[i].isTrigger && m_contactBuffer[i].transform != transform)
+            {
+                OnContact(m_contactBuffer[i]);
+
+                var listeners = m_contactBuffer[i].GetComponents<IEntityContact>();
+                foreach (var contact in listeners)
+                {
+                    contact.OnEntityContact((T)this);
+                }
+
+                if (m_contactBuffer[i].bounds.min.y > controller.bounds.max.y)
+                {
+                    verticalVelocity = Vector3.Min(verticalVelocity, Vector3.zero);
+                }
+            }
+        }
+    }
+
+    /**
+     * 获取检测范围内的gameobject个数
+     */
+    public virtual int OverlapEntity(Collider[] result, float skinOffset = 0)
+    {
+        var contactOffset = skinOffset + controller.skinWidth + Physics.defaultContactOffset;
+        var overlapsRadius = radius + contactOffset;
+        var offset = (height + contactOffset) * 0.5f - overlapsRadius;
+        var top = position + Vector3.up * offset;
+        var bottom = position + Vector3.down * offset;
+        return Physics.OverlapCapsuleNonAlloc(top, bottom, overlapsRadius, result);
+    }
+
+    protected virtual void OnContact(Collider other)
+    {
+        if (other)
+        {
+            states.OnContact(other);
         }
     }
 

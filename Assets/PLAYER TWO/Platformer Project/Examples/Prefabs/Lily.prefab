@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6430567958195860110}
   m_Layer: 0
   m_Name: Lily
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +63,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e215f2e7e24f5499bfd987fe7d15e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityEvents:
+    OnGroundEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnGroundExit:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRailsEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRailsExit:
+      m_PersistentCalls:
+        m_Calls: []
+  playerEvents:
+    OnJump:
+      m_PersistentCalls:
+        m_Calls: []
+    OnHurt:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDie:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSpin:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPickUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnThrow:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompStarted:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompFalling:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompLanding:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompEnding:
+      m_PersistentCalls:
+        m_Calls: []
+    OnLedgeGrabbed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnLedgeClimbing:
+      m_PersistentCalls:
+        m_Calls: []
+    OnAirDive:
+      m_PersistentCalls:
+        m_Calls: []
+    OnBackflip:
+      m_PersistentCalls:
+        m_Calls: []
+    OnGlidingStart:
+      m_PersistentCalls:
+        m_Calls: []
+    OnGlidingStop:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDashStarted:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDashEnded:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &5651797369211599651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,8 +160,8 @@ MonoBehaviour:
   - IdlePlayerState
   - WalkPlayerState
   - BrakePlayerState
-  - BackflipPlayerState
   - FallPlayerState
+  - BackflipPlayerState
 --- !u!114 &5910283242886582421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,8 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: State
   lastStateName: Last State
-  lateralSpeedName: Lateral State
-  verticalSpeedName: Vertical State
+  lateralSpeedName: Lateral Speed
+  verticalSpeedName: Vertical Speed
   lateralAnimationSpeedName: Lateral Animation Speed
   healthName: Health
   jumpCounterName: Jump Counter
