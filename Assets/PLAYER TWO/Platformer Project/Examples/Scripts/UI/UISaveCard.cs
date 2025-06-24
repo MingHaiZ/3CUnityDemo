@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UISaveCard : MonoBehaviour
@@ -25,6 +26,7 @@ public class UISaveCard : MonoBehaviour
     public Text coins;
     public Text createdAt;
     public Text updateAt;
+    
     public Button loadButton;
     public Button deleteButton;
     public Button newGameButton;
@@ -44,10 +46,31 @@ public class UISaveCard : MonoBehaviour
 
     protected virtual void Create()
     {
+        var data = GameData.Create();
+        GameSaver.instance.Save(data, m_index);
+        Fill(m_index, data);
+        EventSystem.current.SetSelectedGameObject(loadButton.gameObject);
     }
 
     public virtual void Fill(int index, GameData data)
     {
+        m_index = index;
+        isFilled = data != null;
+        dataContainer.SetActive(isFilled);
+        emptyContainer.SetActive(!isFilled);
+        loadButton.interactable = isFilled;
+        deleteButton.interactable = isFilled;
+        newGameButton.interactable = !isFilled;
+
+        if (data != null)
+        {
+            m_data = data;
+            retries.text = data.retries.ToString(retriesFormat);
+            stars.text = data.retries.ToString(starsFormat);
+            coins.text = data.retries.ToString(coinsFormat);
+            createdAt.text = DateTime.Parse(data.createdAt).ToLocalTime().ToString(dateFormat);
+            updateAt.text = DateTime.Parse(data.updatedAt).ToLocalTime().ToString(dateFormat);
+        }
     }
 
     protected virtual void Start()

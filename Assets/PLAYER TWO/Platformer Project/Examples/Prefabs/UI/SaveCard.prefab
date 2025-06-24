@@ -1239,6 +1239,7 @@ GameObject:
   - component: {fileID: 6588080863063303181}
   - component: {fileID: 8556159089701214063}
   - component: {fileID: 4248972062564830713}
+  - component: {fileID: -8803264766615490353}
   m_Layer: 5
   m_Name: SaveCard
   m_TagString: Untagged
@@ -1305,6 +1306,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-8803264766615490353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841652086850704573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707b97893ae3441eabfa2c2ada700917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene: LevelSelect
+  retriesFormat: 00
+  starsFormat: 00
+  coinsFormat: 000
+  dateFormat: MM/dd/y hh:mm
+  dataContainer: {fileID: 6015824951179128377}
+  emptyContainer: {fileID: 2701110151005480842}
+  retries: {fileID: 1126777384297253537}
+  stars: {fileID: 3672129352941869780}
+  coins: {fileID: 2121841299430579789}
+  createdAt: {fileID: 6508928801704661276}
+  updateAt: {fileID: 4777760855764328670}
+  loadButton: {fileID: 2051244578783674968}
+  deleteButton: {fileID: 7968217651352325201}
+  newGameButton: {fileID: 2499383666024244404}
 --- !u!1 &7129174133363100122
 GameObject:
   m_ObjectHideFlags: 0
