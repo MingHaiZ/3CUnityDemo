@@ -37,6 +37,7 @@ public class GameLoader : Singleton<GameLoader>
         while (!operation.isDone)
         {
             loadingProgress = operation.progress;
+            yield return null;
         }
 
         loadingProgress = 1;

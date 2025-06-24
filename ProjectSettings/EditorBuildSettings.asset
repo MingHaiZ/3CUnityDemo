@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/PLAYER TWO/Platformer Project/Examples/Scenes/TitleScreen.unity
+    guid: 7bac96d44f5432d4ab6a38001e0f5db9
+  - enabled: 1
+    path: Assets/PLAYER TWO/Platformer Project/Examples/Scenes/FileSelect.unity
+    guid: 579d7c25b776e934e818b2505645cf97
   m_configObjects: {}

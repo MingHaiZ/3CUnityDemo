@@ -4,6 +4,5 @@ public class Game : Singleton<Game>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
-        
     }
 }
