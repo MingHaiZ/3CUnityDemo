@@ -53,9 +53,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     protected virtual void HandleState() => states.Step();
 
     protected virtual void InitializeStateManager() => states = GetComponent<EntityStateManager<T>>();
-
-    public virtual bool IsPointUnderStep(Vector3 point) => stepPosition.y > point.y;
-
+    
     public virtual bool SphereCast(Vector3 direction, float distance, out RaycastHit hit,
         int layerMask = Physics.DefaultRaycastLayers,
         QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore)
