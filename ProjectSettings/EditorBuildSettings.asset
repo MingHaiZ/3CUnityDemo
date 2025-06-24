@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PLAYER TWO/Platformer Project/Examples/Scenes/FileSelect.unity
     guid: 579d7c25b776e934e818b2505645cf97
+  - enabled: 1
+    path: Assets/PLAYER TWO/Platformer Project/Examples/Scenes/LevelSelect.unity
+    guid: 276cfd95c4c77004fb5d1ab83d9f447d
   m_configObjects: {}

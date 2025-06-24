@@ -26,7 +26,7 @@ public class UISaveCard : MonoBehaviour
     public Text coins;
     public Text createdAt;
     public Text updateAt;
-    
+
     public Button loadButton;
     public Button deleteButton;
     public Button newGameButton;
@@ -38,6 +38,8 @@ public class UISaveCard : MonoBehaviour
 
     protected virtual void Load()
     {
+        Game.instance.LoadState(m_index,m_data);
+        GameLoader.instance.Load(nextScene);
     }
 
     protected virtual void Delete()
