@@ -14,9 +14,72 @@ public class HUD : MonoBehaviour
     public Text coins;
     public Text health;
     public Text timer;
+    public Image[] starsImages;
+
+    protected Game m_game;
+    protected LevelScore m_score;
+    protected Player m_player;
+
+    protected float timerStep;
+    protected static float timerRefreshRate = .1f;
+
+    protected virtual void UpdateCoins(int value)
+    {
+        coins.text = value.ToString(coinsFormat);
+    }
+
+    protected virtual void UpdateRetries(int value)
+    {
+        retries.text = value.ToString(retriesFormat);
+    }
+
+    protected virtual void UpdateHealth()
+    {
+        health.text = m_player.health.current.ToString(healthFormat);
+    }
+
+    protected virtual void UpdateStars(bool[] value)
+    {
+        for (int i = 0; i < starsImages.Length; i++)
+        {
+            starsImages[i].enabled = value[i];
+        }
+    }
+
+    protected virtual void UpdateTimer()
+    {
+        timerStep += Time.deltaTime;
+        if (timerStep >= timerRefreshRate)
+        {
+            timer.text = GameLevel.FormattedTime(m_score.time);
+            timerStep = 0;
+        }
+    }
+
+    public virtual void Refresh()
+    {
+        UpdateCoins(m_score.coins);
+        UpdateRetries(m_game.retries);
+        UpdateHealth();
+        UpdateStars(m_score.stars);
+    }
 
     protected void Awake()
     {
+        m_game = Game.instance;
+        m_score = LevelScore.instance;
+        m_player = FindObjectOfType<Player>();
         
+
+        m_score.OnScoreLoaded.AddListener(() =>
+        {
+            m_score.OnCoinsSet.AddListener(UpdateCoins);
+            m_score.OnStarsSet.AddListener(UpdateStars);
+            m_game.OnRetriesSet.AddListener(UpdateRetries);
+            m_player.health.OnChange.AddListener(UpdateHealth);
+            Refresh();
+        });
     }
+
+    protected void Update() => UpdateTimer();
 }

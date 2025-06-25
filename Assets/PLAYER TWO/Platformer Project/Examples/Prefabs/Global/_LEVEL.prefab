@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7918454777281365720}
   - component: {fileID: 5994551882229215910}
   - component: {fileID: 5380278587471800551}
+  - component: {fileID: 1231255174029546932}
   m_Layer: 0
   m_Name: _LEVEL
   m_TagString: Untagged
@@ -60,6 +61,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eaa26948aa422b820cd079b6b6d1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCoinsSet:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStarsSet:
+    m_PersistentCalls:
+      m_Calls: []
+  OnScoreLoaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5994551882229215910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +103,23 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnUnpause:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1231255174029546932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110181224440649581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06804dd594f442198d4222bff121502b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingDelay: 1
+  exitScene: LevelSelect
+  OnExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8163799726508062051

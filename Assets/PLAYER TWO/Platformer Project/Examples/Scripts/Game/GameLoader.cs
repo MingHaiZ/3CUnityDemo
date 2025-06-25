@@ -8,6 +8,7 @@ public class GameLoader : Singleton<GameLoader>
     public UnityEvent OnLoadStart;
     public UnityEvent OnLoadFinish;
 
+    public string currentScene => SceneManager.GetActiveScene().name;
     public bool isLoading { get; protected set; }
     public UIAnimator loadingScreen;
     public float loadingProgress { get; protected set; }
@@ -39,7 +40,7 @@ public class GameLoader : Singleton<GameLoader>
             loadingProgress = operation.progress;
             yield return null;
         }
-
+        
         loadingProgress = 1;
 
         yield return new WaitForSeconds(finishDelay);

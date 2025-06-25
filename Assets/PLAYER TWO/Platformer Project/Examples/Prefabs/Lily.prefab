@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5910283242886582421}
   - component: {fileID: 6430567958195860110}
   - component: {fileID: 3419828105809964617}
+  - component: {fileID: 7159658377673714805}
   m_Layer: 0
   m_Name: Lily
   m_TagString: Player
@@ -217,6 +218,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee11e8b8d519434da236144afc8f57e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7159658377673714805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219701247475986322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e94a307b69b4ff2a09d980e576ea147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initial: 3
+  max: 3
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6361865368257376572
 PrefabInstance:
   m_ObjectHideFlags: 0

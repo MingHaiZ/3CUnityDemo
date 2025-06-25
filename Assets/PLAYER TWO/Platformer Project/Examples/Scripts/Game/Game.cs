@@ -54,4 +54,10 @@ public class Game : Singleton<Game>
         Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
 #endif
     }
+
+    public virtual GameLevel GetCurrentLevel()
+    {
+        var scene = GameLoader.instance.currentScene;
+        return levels.Find((level) => level.scene == scene);
+    }
 }

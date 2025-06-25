@@ -155,6 +155,17 @@ Transform:
   - {fileID: 608048108}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &225303619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1090088771531898814, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+  m_PrefabInstance: {fileID: 6458883077493677644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c735182f74f47469db7fad768f1a9d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &471575080
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +591,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6950773636337697542, guid: c0dbf2e4ef581274b9a347697b5888d4, type: 3}
+    - {fileID: 7869935826677180062, guid: c0dbf2e4ef581274b9a347697b5888d4, type: 3}
+    - {fileID: 8481960781203375146, guid: c0dbf2e4ef581274b9a347697b5888d4, type: 3}
+    - {fileID: 8259165675725662831, guid: c0dbf2e4ef581274b9a347697b5888d4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0dbf2e4ef581274b9a347697b5888d4, type: 3}
@@ -693,6 +708,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2443328633881578907, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565300148417095863, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: starsImages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766528525490705815, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766528525490705815, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766528525490705815, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 225303619}
+    - target: {fileID: 3766528525490705815, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766528525490705815, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766528525490705815, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3990853934412861109, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413938184462453405, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5896844699937357838, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -736,6 +791,10 @@ PrefabInstance:
     - target: {fileID: 6727655001014362355, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883057482458030450, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
+      propertyPath: OnShow.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9002969298688736381, guid: 870e1bca1dac3834c88a99f2e7deb2d6, type: 3}
       propertyPath: m_AnchorMax.y
