@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class Game : Singleton<Game>
 {
@@ -42,5 +45,13 @@ public class Game : Singleton<Game>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+    }
+
+    public static void LockCursor(bool value = true)
+    {
+#if UNITY_STANDALONE
+        Cursor.visible = value;
+        Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
+#endif
     }
 }
