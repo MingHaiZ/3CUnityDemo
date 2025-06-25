@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
-  m_VerticalFit: 1
+  m_VerticalFit: 0
 --- !u!114 &188775539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 40
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 10
@@ -730,7 +730,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -54}
-  m_SizeDelta: {x: -124, y: 360}
+  m_SizeDelta: {x: -124, y: 420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &653230726
 MonoBehaviour:
@@ -914,26 +914,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877344407}
   m_CullTransparentMesh: 1
---- !u!1 &895900447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5682371682467722831, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
-  m_PrefabInstance: {fileID: 904289147}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &895900451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895900447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2eba227ce4460fbb4367971dd83606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  binaryFileExtension: data
-  fileName: save
 --- !u!1001 &904289147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,9 +922,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 75742242199497365, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804782108518278465, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234504980736876705, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].name
+      value: TestLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: b6c83d91877ad26418277a0d3cabbe17, type: 3}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].scene
+      value: TestLevelScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].description
+      value: Play around with features of the asset
+      objectReference: {fileID: 0}
     - target: {fileID: 5682371682467722831, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
       propertyPath: m_Name
       value: _GAME_
+      objectReference: {fileID: 0}
+    - target: {fileID: 6289252357352286928, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292944632301643620, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -986,13 +1002,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7838359087127672419, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5682371682467722831, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 895900451}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
 --- !u!1 &1155312813
 GameObject:
@@ -1764,9 +1781,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Content: {fileID: 188775537}
   m_Horizontal: 1
-  m_Vertical: 1
-  m_MovementType: 2
-  m_Elasticity: 0.1
+  m_Vertical: 0
+  m_MovementType: 1
+  m_Elasticity: 0.01
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1

@@ -702,7 +702,7 @@ MonoBehaviour:
   description: {fileID: 9046918758774355310}
   coins: {fileID: 9063305889889100080}
   time: {fileID: 1892998740479395044}
-  image: {fileID: 0}
+  image: {fileID: 2554512785131431863}
   starsImages:
   - {fileID: 583515201980720130}
   - {fileID: 5681164098866276726}

@@ -15,7 +15,10 @@ public class UILevelList : MonoBehaviour
         var levels = Game.instance.levels;
         for (int i = 0; i < levels.Count; i++)
         {
-            m_cardList.Add(Instantiate(card, container));
+            var uiLevelCard = Instantiate(card, container);
+            print(uiLevelCard);
+            m_cardList.Add(uiLevelCard);
+            m_cardList[i].Fill(levels[i]);
         }
 
         if (focusFirstCard)

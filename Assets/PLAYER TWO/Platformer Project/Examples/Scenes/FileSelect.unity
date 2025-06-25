@@ -862,26 +862,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877344407}
   m_CullTransparentMesh: 1
---- !u!1 &895900447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5682371682467722831, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
-  m_PrefabInstance: {fileID: 904289147}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &895900451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895900447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2eba227ce4460fbb4367971dd83606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  binaryFileExtension: data
-  fileName: save
 --- !u!1001 &904289147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,6 +870,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4804782108518278465, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234504980736876705, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].name
+      value: TestLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: b6c83d91877ad26418277a0d3cabbe17, type: 3}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].scene
+      value: TestLevelScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625635986987059676, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
+      propertyPath: levels.Array.data[0].description
+      value: Play around with features of the asset
+      objectReference: {fileID: 0}
     - target: {fileID: 5682371682467722831, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
       propertyPath: m_Name
       value: _GAME_
@@ -937,10 +945,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5682371682467722831, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 895900451}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
 --- !u!1 &1155312813
 GameObject:
