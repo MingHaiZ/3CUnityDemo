@@ -15,9 +15,19 @@ public class Player : Entity<Player>
     public Health health { get; protected set; }
     public bool onWater { get; protected set; }
 
+    protected Vector3 m_respawnPosition;
+    protected Quaternion m_respawnRotation;
+
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
     protected virtual void InitializeHealth() => health = GetComponent<Health>();
+
+    protected virtual void InitializeRespawn()
+    {
+        m_respawnPosition = transform.position;
+        m_respawnRotation = transform.rotation;
+    }
+
     public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);
     public virtual void Decelerate() => Decelerate(stats.current.deceleration);
     public virtual void Friction() => Decelerate(stats.current.friction);
@@ -30,6 +40,7 @@ public class Player : Entity<Player>
         InitializeStats();
         InitializeHealth();
         InitializeTag();
+        InitializeRespawn();
     }
 
     public virtual void Accelerate(Vector3 direction)
@@ -135,6 +146,13 @@ public class Player : Entity<Player>
             var force = lateralVelocity.magnitude * stats.current.throwVelocityMultiplier;
             // TODO
         }
+    }
+
+    public virtual void Respawn()
+    {
+        health.Reset();
+        transform.SetPositionAndRotation(m_respawnPosition, m_respawnRotation);
+        states.Change<IdlePlayerState>();
     }
 
     public override void ApplyDamage(int amount, Vector3 origin)

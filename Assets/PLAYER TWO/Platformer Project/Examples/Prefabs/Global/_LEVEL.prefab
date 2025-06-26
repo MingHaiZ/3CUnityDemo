@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5994551882229215910}
   - component: {fileID: 5380278587471800551}
   - component: {fileID: 1231255174029546932}
+  - component: {fileID: 8229187802346451776}
   m_Layer: 0
   m_Name: _LEVEL
   m_TagString: Untagged
@@ -118,8 +119,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingDelay: 1
+  unlockNextLevel: 0
+  nextScene: 
   exitScene: LevelSelect
   OnExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFinish:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8229187802346451776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110181224440649581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7248160ae0dc4225935ca9cd1489138f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnFadeOutDelay: 1
+  respawnFadeInDelay: 0.5
+  gameOverFadeOutDelay: 5
+  restartFadeOutDelay: 0.5
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8163799726508062051

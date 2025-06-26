@@ -40,7 +40,7 @@ public class GameLoader : Singleton<GameLoader>
             loadingProgress = operation.progress;
             yield return null;
         }
-        
+
         loadingProgress = 1;
 
         yield return new WaitForSeconds(finishDelay);
@@ -48,5 +48,10 @@ public class GameLoader : Singleton<GameLoader>
         isLoading = false;
         loadingScreen.Hide();
         OnLoadFinish?.Invoke();
+    }
+
+    public virtual void Reload()
+    {
+        StartCoroutine(LoadRoutine(currentScene));
     }
 }

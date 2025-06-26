@@ -19,7 +19,7 @@ public class Hazard : MonoBehaviour, IEntityContact
 
     protected virtual void TryToApplyDamageTo(Player player)
     {
-        if (damageOnlyFromAbove || player.velocity.y <= 0 && player.IsPointUnderStep(m_collider.bounds.max))
+        if (!damageOnlyFromAbove || player.velocity.y <= 0 && player.IsPointUnderStep(m_collider.bounds.max))
         {
             player.ApplyDamage(damage, transform.position);
         }
