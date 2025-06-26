@@ -10,6 +10,7 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float gravity = 38f;
     public float fallGravity = 65f;
     public float pushForce = 4f;
+    public float snapForce = 15f;
 
     [Header("Motion stats")]
     public float brakeThreshold = -0.8f;
@@ -50,4 +51,12 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float stompDownWardForce = 20f;
     public float stompGroundTime = 0.5f;
     public float stompGroundLeapHeight = 10f;
+
+    [Header("Hurt Stats")]
+    public float hurtBackwardsForce = 5f;
+
+    public float hurtUpwardsForce = 10f;
+
+    [Header("Pick'n Throw Stats")]
+    public float throwVelocityMultiplier = 1.5f;
 }

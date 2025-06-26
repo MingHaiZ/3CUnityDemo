@@ -42,7 +42,7 @@ public abstract class Entity : MonoBehaviour
 
     protected Collider[] m_contactBuffer = new Collider[10];
     protected CapsuleCollider m_collider;
-    
+
     public virtual bool IsPointUnderStep(Vector3 point) => stepPosition.y > point.y;
 }
 
@@ -53,7 +53,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     protected virtual void HandleState() => states.Step();
 
     protected virtual void InitializeStateManager() => states = GetComponent<EntityStateManager<T>>();
-    
+
     public virtual bool SphereCast(Vector3 direction, float distance, out RaycastHit hit,
         int layerMask = Physics.DefaultRaycastLayers,
         QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore)
@@ -150,6 +150,15 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         }
     }
 
+    public virtual void FaceDirection(Vector3 direction)
+    {
+        if (direction.sqrMagnitude > 0)
+        {
+            var rotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = rotation;
+        }
+    }
+
     public virtual void FaceDirection(Vector3 direction, float degressPerSpeed)
     {
         if (direction != Vector3.zero)
@@ -216,10 +225,9 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
     // 处理碰撞
     protected virtual void HandleContacts()
-    { 
-        
+    {
         int overlaps = OverlapEntity(m_contactBuffer);
-        
+
         for (int i = 0; i < overlaps; i++)
         {
             if (!m_contactBuffer[i].isTrigger && m_contactBuffer[i].transform != transform)
@@ -264,5 +272,17 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     protected virtual bool EvaluateLanding(RaycastHit hit)
     {
         return IsPointUnderStep(hit.point) && Vector3.Angle(hit.normal, Vector3.up) < controller.slopeLimit;
+    }
+
+    public virtual void ApplyDamage(int amount, Vector3 origin)
+    {
+    }
+
+    public virtual void SnapToGround(float force)
+    {
+        if (isGrounded && (verticalVelocity.y <= 0))
+        {
+            verticalVelocity = Vector3.down * force;
+        }
     }
 }

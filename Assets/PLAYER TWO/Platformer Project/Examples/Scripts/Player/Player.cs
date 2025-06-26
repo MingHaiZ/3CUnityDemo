@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class Player : Entity<Player>
     public int jumpCounter { get; protected set; }
     public bool holding { get; protected set; }
     public Health health { get; protected set; }
+    public bool onWater { get; protected set; }
 
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
@@ -79,6 +81,8 @@ public class Player : Entity<Player>
         }
     }
 
+    public virtual void SnapToGround() => SnapToGround(stats.current.snapForce);
+
     public virtual void Fall()
     {
         if (!isGrounded)
@@ -121,6 +125,42 @@ public class Player : Entity<Player>
         {
             var force = lateralVelocity * stats.current.pushForce;
             rigidbody.velocity += force / rigidbody.mass * Time.deltaTime;
+        }
+    }
+
+    public virtual void Throw()
+    {
+        if (holding)
+        {
+            var force = lateralVelocity.magnitude * stats.current.throwVelocityMultiplier;
+            // TODO
+        }
+    }
+
+    public override void ApplyDamage(int amount, Vector3 origin)
+    {
+        if (!health.isEmpty && !health.recovering)
+        {
+            health.Damage(amount);
+            var damageDir = origin - transform.position;
+            damageDir.y = 0;
+            damageDir = damageDir.normalized;
+            FaceDirection(damageDir);
+            lateralVelocity = -transform.forward * stats.current.hurtBackwardsForce;
+
+            if (!onWater)
+            {
+                verticalVelocity = Vector3.up * stats.current.hurtUpwardsForce;
+                states.Change<HurtPlayerState>();
+            }
+
+            playerEvents.OnHurt?.Invoke();
+
+            if (health.isEmpty)
+            {
+                Throw();
+                playerEvents.OnDie?.Invoke();
+            }
         }
     }
 }
