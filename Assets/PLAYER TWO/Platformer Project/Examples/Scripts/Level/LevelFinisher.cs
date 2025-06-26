@@ -33,7 +33,7 @@ public class LevelFinisher : Singleton<LevelFinisher>
         }
 
         Game.LockCursor(false);
-        m_score.Consolidate();
+        m_score.Consolidata();
         m_loader.Load(nextScene);
         OnFinish?.Invoke();
     }
@@ -54,7 +54,7 @@ public class LevelFinisher : Singleton<LevelFinisher>
     public virtual void Finish()
     {
         StopAllCoroutines();
-        StartCoroutine(ExitRoutine());
+        StartCoroutine(FinishRoutine());
     }
 
     public virtual void Exit()

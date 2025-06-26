@@ -9,6 +9,7 @@ public class UILevelCard : MonoBehaviour
     public Text description;
     public Text coins;
     public Text time;
+    public bool[] stars;
     public Image image;
     public Image[] starsImages;
 
@@ -40,12 +41,13 @@ public class UILevelCard : MonoBehaviour
             description.text = level.description;
             coins.text = level.coins.ToString();
             time.text = GameLevel.FormattedTime(level.time);
+            stars = (bool[])level.stars.Clone();
             image.sprite = level.image;
         }
 
         for (int i = 0; i < starsImages.Length; i++)
         {
-            starsImages[i].gameObject.SetActive(true);
+            starsImages[i].gameObject.SetActive(stars[i]);
         }
     }
 

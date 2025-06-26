@@ -25,7 +25,6 @@ public class GameSaver : Singleton<GameSaver>
         for (int i = 0; i < TotalSlots; i++)
         {
             var data = Load(i);
-
             if (data != null)
             {
                 list[i] = data;

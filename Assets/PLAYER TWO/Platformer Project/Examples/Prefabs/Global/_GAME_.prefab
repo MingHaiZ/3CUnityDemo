@@ -134,7 +134,15 @@ MonoBehaviour:
   initialRetires: 3
   m_dataIndex: 0
   m_retries: 0
-  levels: []
+  OnSavingRequested:
+    m_PersistentCalls:
+      m_Calls: []
+  levels:
+  - locked: 0
+    scene: TestLevelScene
+    name: TestLevel
+    description: Play around with features of the asset
+    image: {fileID: 21300000, guid: b6c83d91877ad26418277a0d3cabbe17, type: 3}
 --- !u!114 &1733301890058649024
 MonoBehaviour:
   m_ObjectHideFlags: 0

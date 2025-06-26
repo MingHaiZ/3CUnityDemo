@@ -91,7 +91,7 @@ public class Game : Singleton<Game>
             retries = m_retries,
             levels = LevelData(),
             createdAt = m_createdAt.ToString(),
-            updatedAt = m_updateAt.ToString()
+            updatedAt = DateTime.UtcNow.ToString()
         };
     }
 

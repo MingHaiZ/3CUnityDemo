@@ -50,7 +50,7 @@ public class LevelScore : Singleton<LevelScore>
         }
     }
 
-    public virtual void Consolidate()
+    public virtual void Consolidata()
     {
         if (m_level != null)
         {
