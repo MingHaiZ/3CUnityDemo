@@ -33,12 +33,12 @@ public class LevelScore : Singleton<LevelScore>
     {
         m_game = Game.instance;
         m_level = m_game?.GetCurrentLevel();
-        
+
         if (m_level != null)
         {
             m_stars = (bool[])m_level.stars.Clone();
         }
-        
+
         OnScoreLoaded?.Invoke();
     }
 
@@ -47,6 +47,25 @@ public class LevelScore : Singleton<LevelScore>
         if (!stopTime)
         {
             time += Time.deltaTime;
+        }
+    }
+
+    public virtual void Consolidate()
+    {
+        if (m_level != null)
+        {
+            if (m_level.time == 0 || time < m_level.time)
+            {
+                m_level.time = time;
+            }
+
+            if (coins > m_level.coins)
+            {
+                m_level.coins = coins;
+            }
+
+            m_level.stars = (bool[])stars.Clone();
+            m_game.RequestSaving();
         }
     }
 }
