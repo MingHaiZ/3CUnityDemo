@@ -18,13 +18,13 @@ public class Mover : MonoBehaviour
     public virtual void Reset()
     {
         StopAllCoroutines();
-        StartCoroutine(ApplyOffsetRoutine(m_initialPosition, m_initialPosition, resetDuration));
+        StartCoroutine(ApplyOffsetRoutine(transform.localPosition, m_initialPosition, resetDuration));
     }
 
     protected virtual IEnumerator ApplyOffsetRoutine(Vector3 from, Vector3 to, float duration)
     {
         var elapsedTime = 0f;
-
+        
         while (elapsedTime < duration)
         {
             var t = elapsedTime / duration;
