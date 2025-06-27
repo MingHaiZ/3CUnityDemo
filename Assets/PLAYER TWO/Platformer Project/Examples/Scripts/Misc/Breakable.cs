@@ -15,7 +15,7 @@ public class Breakable : MonoBehaviour
 
     public bool broken { get; protected set; }
 
-    protected virtual void Break()
+    public virtual void Break()
     {
         if (!broken)
         {

@@ -14,6 +14,7 @@ public class Player : Entity<Player>
     public bool holding { get; protected set; }
     public Health health { get; protected set; }
     public bool onWater { get; protected set; }
+    public int airSpinCount { get; protected set; }
 
     protected Vector3 m_respawnPosition;
     protected Quaternion m_respawnRotation;
@@ -179,6 +180,21 @@ public class Player : Entity<Player>
                 Throw();
                 playerEvents.OnDie?.Invoke();
             }
+        }
+    }
+
+    public virtual void spin()
+    {
+        var canAirSpin = (isGrounded || stats.current.canAirSpin) && airSpinCount < stats.current.canAirSpinCount;
+        if (stats.current.canSpin && canAirSpin && !holding && inputs.GetSpinDown())
+        {
+            if (!isGrounded)
+            {
+                airSpinCount++;
+            }
+
+            states.Change<SpinPlayerState>();
+            playerEvents.OnSpin?.Invoke();
         }
     }
 }

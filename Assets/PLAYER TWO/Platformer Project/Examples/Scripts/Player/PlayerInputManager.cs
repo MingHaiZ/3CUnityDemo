@@ -13,6 +13,7 @@ public class PlayerInputManager : MonoBehaviour
     protected InputAction m_jump;
     protected InputAction m_look;
     protected InputAction m_pause;
+    protected InputAction m_spin;
     protected Camera m_camera;
     protected float? m_lastJumpTime;
     protected const float k_jumpBuffer = 0.15f;
@@ -56,6 +57,7 @@ public class PlayerInputManager : MonoBehaviour
         m_jump = actions["Jump"];
         m_look = actions["Look"];
         m_pause = actions["Pause"];
+        m_spin = actions["Spin"];
     }
 
     public virtual bool GetRun() => m_run.IsInProgress();
@@ -106,6 +108,9 @@ public class PlayerInputManager : MonoBehaviour
 
         return false;
     }
+
+    public virtual bool GetSpinDown() => m_spin.WasPressedThisFrame();
+    
 
     public virtual bool GetJumpUp() => m_jump.WasReleasedThisFrame();
 

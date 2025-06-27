@@ -12,6 +12,11 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float pushForce = 4f;
     public float snapForce = 15f;
 
+    [Header("Spin Stats")]
+    public bool canSpin = true;
+    public bool canAirSpin = true;
+    public int canAirSpinCount = 1;
+
     [Header("Motion stats")]
     public float brakeThreshold = -0.8f;
 

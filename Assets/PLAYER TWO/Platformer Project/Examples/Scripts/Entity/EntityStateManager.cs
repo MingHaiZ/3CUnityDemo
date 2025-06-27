@@ -70,11 +70,14 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
             if (current != null)
             {
                 current.Exit(entity);
+                events.onExit?.Invoke(current.GetType());
                 last = current;
             }
 
             current = to;
             current.Enter(entity);
+            events.onEnter?.Invoke(current.GetType());
+            events.onChange?.Invoke();
         }
     }
 
