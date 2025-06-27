@@ -44,6 +44,8 @@ public abstract class Entity : MonoBehaviour
     protected CapsuleCollider m_collider;
 
     public virtual bool IsPointUnderStep(Vector3 point) => stepPosition.y > point.y;
+
+    public abstract void ApplyDamage(int amount, Vector3 origin);
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>
@@ -273,11 +275,8 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         return IsPointUnderStep(hit.point) && Vector3.Angle(hit.normal, Vector3.up) < controller.slopeLimit;
     }
-
-    public virtual void ApplyDamage(int amount, Vector3 origin)
-    {
-    }
-
+    
+    
     public virtual void SnapToGround(float force)
     {
         if (isGrounded && (verticalVelocity.y <= 0))
