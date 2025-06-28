@@ -275,13 +275,30 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         return IsPointUnderStep(hit.point) && Vector3.Angle(hit.normal, Vector3.up) < controller.slopeLimit;
     }
-    
-    
+
     public virtual void SnapToGround(float force)
     {
         if (isGrounded && (verticalVelocity.y <= 0))
         {
             verticalVelocity = Vector3.down * force;
         }
+    }
+
+    public virtual bool CapsuleCast(Vector3 direction, float distance, int layer = Physics.DefaultRaycastLayers,
+        QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore)
+    {
+        return CapsuleCast(direction, distance, out _, layer, queryTriggerInteraction);
+    }
+
+    public virtual bool CapsuleCast(Vector3 direction, float distance, out RaycastHit hit,
+        int layer = Physics.DefaultRaycastLayers,
+        QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore)
+    {
+        var origin = position - direction * radius + center;
+        var offset = transform.up * (height * 0.5f - radius);
+        var top = origin + offset;
+        var bottom = origin - offset;
+        return Physics.CapsuleCast(top, bottom, radius, direction, out hit, distance + radius, layer,
+            queryTriggerInteraction);
     }
 }

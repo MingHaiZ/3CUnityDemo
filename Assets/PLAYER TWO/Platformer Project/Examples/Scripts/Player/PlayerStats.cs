@@ -14,6 +14,7 @@ public class PlayerStats : EntityStats<PlayerStats>
 
     [Header("Spin Stats")]
     public bool canSpin = true;
+
     public bool canAirSpin = true;
     public int canAirSpinCount = 1;
     public float airSignUpwardForce = 10f;
@@ -65,5 +66,9 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float hurtUpwardsForce = 10f;
 
     [Header("Pick'n Throw Stats")]
+    public bool canPickUp = true;
+
+    public bool canPickUpOnAir = false;
     public float throwVelocityMultiplier = 1.5f;
+    public float pickUpDistance = 0.5f;
 }

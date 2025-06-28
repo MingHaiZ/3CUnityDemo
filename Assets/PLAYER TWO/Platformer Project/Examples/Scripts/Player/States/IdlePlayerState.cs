@@ -14,8 +14,10 @@ public class IdlePlayerState : PlayerState
     protected override void OnStep(Player player)
     {
         player.Gravity();
+        player.SnapToGround();
         player.Jump();
         player.Fall();
+        player.PickAndThrow();
         player.Friction();
         player.Spin();
         // 输出方向
@@ -29,7 +31,5 @@ public class IdlePlayerState : PlayerState
 
     public override void OnContact(Player entity, Collider other)
     {
-        
-        
     }
 }

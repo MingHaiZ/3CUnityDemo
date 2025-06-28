@@ -13,9 +13,12 @@ public class WalkPlayerState : PlayerState
     protected override void OnStep(Player player)
     {
         player.Gravity();
+        player.SnapToGround();
         player.Jump();
         player.Fall();
         player.Spin();
+        player.PickAndThrow();
+
         var inputDirection = player.inputs.GetMovementCameraDirection();
 
         if (inputDirection.sqrMagnitude > 0)
@@ -42,6 +45,5 @@ public class WalkPlayerState : PlayerState
     public override void OnContact(Player player, Collider other)
     {
         player.PushRigidbody(other);
-        
     }
 }

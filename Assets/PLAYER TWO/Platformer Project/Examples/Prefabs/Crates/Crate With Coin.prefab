@@ -278,12 +278,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134c67069f7c456d95b3215c3788d0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.5, z: 0.25}
+  releaseOffset: 0.25
   attackEnemies: 1
   damage: 1
   minDamageSpeed: 5
   autoRespawn: 0
   respawnOnHitHazards: 0
   respawnHeightLimit: -100
+  onPicked:
+    m_PersistentCalls:
+      m_Calls: []
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &23735161815735991
 MonoBehaviour:
   m_ObjectHideFlags: 0

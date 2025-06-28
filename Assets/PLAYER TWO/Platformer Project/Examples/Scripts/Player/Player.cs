@@ -15,6 +15,9 @@ public class Player : Entity<Player>
     public Health health { get; protected set; }
     public bool onWater { get; protected set; }
     public int airSpinCount { get; protected set; }
+    public Pickable pickable { get; protected set; }
+
+    public Transform pickableSlot;
 
     protected Vector3 m_respawnPosition;
     protected Quaternion m_respawnRotation;
@@ -145,7 +148,12 @@ public class Player : Entity<Player>
         if (holding)
         {
             var force = lateralVelocity.magnitude * stats.current.throwVelocityMultiplier;
-            // TODO
+            pickable.Release(transform.forward, force);
+            
+            pickable = null;
+            holding = false;
+            
+            playerEvents.OnThrow?.Invoke();
         }
     }
 
@@ -203,8 +211,47 @@ public class Player : Entity<Player>
             playerEvents.OnSpin?.Invoke();
         }
     }
-    
+
     public virtual void ResetAirSpinCount() => airSpinCount = 0;
-    
-    
+
+    public virtual void PickAndThrow()
+    {
+        if (stats.current.canPickUp && inputs.GetPickAndDropDown())
+        {
+            if (!holding)
+            {
+                if (CapsuleCast(transform.forward, stats.current.pickUpDistance, out var hit))
+                {
+                    if (hit.transform.TryGetComponent(out Pickable pickable))
+                    {
+                        PickUp(pickable);
+                    }
+                }
+            } else
+            {
+                Throw();
+            }
+        }
+    }
+
+    public virtual void PickUp(Pickable pickable)
+    {
+        if (!holding && (isGrounded || stats.current.canPickUpOnAir))
+        {
+            holding = true;
+            this.pickable = pickable;
+            pickable.PickUp(pickableSlot);
+            pickable.onRespawn.AddListener(RemovePickable);
+            playerEvents.OnPickUp?.Invoke();
+        }
+    }
+
+    public virtual void RemovePickable()
+    {
+        if (holding)
+        {
+            pickable = null;
+            holding = false;
+        }
+    }
 }

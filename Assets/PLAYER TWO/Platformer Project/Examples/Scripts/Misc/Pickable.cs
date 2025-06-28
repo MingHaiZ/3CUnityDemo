@@ -1,9 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class Pickable : MonoBehaviour, IEntityContact
 {
+    [Header("General Settings")]
+    public Vector3 offset;
+
+    public float releaseOffset = 0.5f;
+
+
     [Header("Attack Settings")]
     public bool attackEnemies = true;
 
@@ -23,6 +30,12 @@ public class Pickable : MonoBehaviour, IEntityContact
     protected Quaternion m_initialRotation;
     protected Transform m_initialParent;
 
+    protected RigidbodyInterpolation m_interpolation;
+
+    public UnityEvent onPicked;
+    public UnityEvent onRespawn;
+    public UnityEvent onRelease;
+
     public bool beingHold { get; protected set; }
 
     protected virtual void Start()
@@ -39,6 +52,35 @@ public class Pickable : MonoBehaviour, IEntityContact
         if (attackEnemies && entity is Enemy && m_rigidbody.velocity.magnitude > minDamageSpeed)
         {
             entity.ApplyDamage(damage, transform.position);
+        }
+    }
+
+    public virtual void PickUp(Transform slot)
+    {
+        if (!beingHold)
+        {
+            beingHold = true;
+            transform.parent = slot;
+            transform.localPosition = Vector3.zero + offset;
+            transform.localRotation = Quaternion.identity;
+            m_rigidbody.isKinematic = true;
+            m_collider.isTrigger = true;
+            m_interpolation = m_rigidbody.interpolation;
+            m_rigidbody.interpolation = RigidbodyInterpolation.None;
+            onPicked?.Invoke();
+        }
+    }
+
+    public virtual void Release(Vector3 direction, float force)
+    {
+        if (beingHold)
+        {
+            transform.parent = null;
+            transform.position += direction * releaseOffset;
+            m_collider.isTrigger = m_rigidbody.isKinematic = beingHold = false;
+            m_rigidbody.interpolation = m_interpolation;
+            m_rigidbody.velocity = direction * force;
+            onRelease?.Invoke();
         }
     }
 
