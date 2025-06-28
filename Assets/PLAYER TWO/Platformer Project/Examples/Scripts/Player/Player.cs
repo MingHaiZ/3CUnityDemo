@@ -203,7 +203,8 @@ public class Player : Entity<Player>
             playerEvents.OnSpin?.Invoke();
         }
     }
-
-
+    
     public virtual void ResetAirSpinCount() => airSpinCount = 0;
+    
+    
 }
