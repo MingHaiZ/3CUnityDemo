@@ -27,7 +27,7 @@ public class EntityHitbox : MonoBehaviour
     {
         if (!m_entity)
         {
-            m_entity = GetComponent<Entity>();
+            m_entity = GetComponentInParent<Entity>();
         }
     }
 
@@ -40,6 +40,7 @@ public class EntityHitbox : MonoBehaviour
     protected virtual void Start()
     {
         InitiallizeEntity();
+        InitializeCollider();
     }
 
     protected virtual void HandleEntityAttack(Entity other)
@@ -99,5 +100,6 @@ public class EntityHitbox : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         HandleCollision(other);
+        HandleCustomCollision(other);
     }
 }

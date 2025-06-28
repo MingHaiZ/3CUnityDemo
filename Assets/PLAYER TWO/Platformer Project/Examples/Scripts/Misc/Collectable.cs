@@ -216,8 +216,6 @@ public class Collectable : MonoBehaviour
         var elapsedTime = 0f;
         var initialPosition = transform.position;
         var targetPosition = initialPosition + Vector3.up * quickShowHeight;
-
-        print("Show Display");
         
         display.SetActive(true);
         m_collider.enabled = false;

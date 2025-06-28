@@ -13,6 +13,7 @@ public class FallPlayerState : PlayerState
     protected override void OnStep(Player player)
     {
         player.Gravity();
+        player.SnapToGround();
         player.FaceDirectionSmooth(player.lateralVelocity);
         player.AccelerateToInputDirection();
         player.Jump();

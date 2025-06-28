@@ -76,7 +76,7 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
 
             current = to;
             current.Enter(entity);
-            events.onEnter?.Invoke(current.GetType());
+            events.onEnter.Invoke(current.GetType());
             events.onChange?.Invoke();
         }
     }

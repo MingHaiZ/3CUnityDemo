@@ -1225,10 +1225,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7838359087127672419, guid: 96912a48634cf384cb5e214d03ef90f2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1999,26 +1995,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lily
       objectReference: {fileID: 0}
-    - target: {fileID: 2219701247475986322, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.data[4]
-      value: HurtPlayerState
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.data[5]
-      value: DiePlayerState
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651797369211599651, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
-      propertyPath: states.Array.data[6]
-      value: BackflipPlayerState
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2522,10 +2498,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 475245237}
-    - target: {fileID: 7512975585670341002, guid: d9ca2acbaa1aa7947baa417765285b52, type: 3}
-      propertyPath: m_AvoidObstacles
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8111636760194670894, guid: d9ca2acbaa1aa7947baa417765285b52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.082589

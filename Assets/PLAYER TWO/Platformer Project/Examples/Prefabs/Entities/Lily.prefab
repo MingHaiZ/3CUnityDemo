@@ -302,7 +302,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -491,7 +491,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  states: []
+  states:
+  - SpinPlayerState
 --- !u!1 &8834111371478565692
 GameObject:
   m_ObjectHideFlags: 0
