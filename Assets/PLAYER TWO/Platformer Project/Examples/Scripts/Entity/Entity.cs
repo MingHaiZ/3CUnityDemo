@@ -33,7 +33,7 @@ public abstract class Entity : MonoBehaviour
     protected readonly float m_groundOffset = 0.1f;
     public float radius => controller.radius;
     public Vector3 center => controller.center;
-    public Vector3 position => transform.position;
+    public Vector3 position => transform.position + center;
     public float lastGroundTime { get; protected set; }
     public Vector3 stepPosition => position - transform.up * (height * 0.5f - controller.stepOffset);
     public RaycastHit groundHit;
@@ -100,7 +100,12 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         {
             HandleState();
             HandleController();
+            OnUpdate();
         }
+    }
+
+    protected virtual void OnUpdate()
+    {
     }
 
     protected virtual void InitializeCollider()
@@ -300,5 +305,13 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         var bottom = origin - offset;
         return Physics.CapsuleCast(top, bottom, radius, direction, out hit, distance + radius, layer,
             queryTriggerInteraction);
+    }
+
+    public virtual void Gravity(float gravity)
+    {
+        if (!isGrounded)
+        {
+            verticalVelocity += Vector3.down * gravity * gravityMultiplier * Time.deltaTime;
+        }
     }
 }
