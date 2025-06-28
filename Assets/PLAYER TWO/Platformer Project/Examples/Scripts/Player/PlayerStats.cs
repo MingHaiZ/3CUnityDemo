@@ -16,6 +16,8 @@ public class PlayerStats : EntityStats<PlayerStats>
     public bool canSpin = true;
     public bool canAirSpin = true;
     public int canAirSpinCount = 1;
+    public float airSignUpwardForce = 10f;
+    public float spinDuration = 0.5f;
 
     [Header("Motion stats")]
     public float brakeThreshold = -0.8f;

@@ -4,6 +4,7 @@ public class IdlePlayerState : PlayerState
 {
     protected override void OnEnter(Player player)
     {
+        player.ResetAirSpinCount();
     }
 
     protected override void OnExit(Player player)
@@ -16,6 +17,7 @@ public class IdlePlayerState : PlayerState
         player.Jump();
         player.Fall();
         player.Friction();
+        player.Spin();
         // 输出方向
         var inputDirection = player.inputs.GetMovementDirection();
 

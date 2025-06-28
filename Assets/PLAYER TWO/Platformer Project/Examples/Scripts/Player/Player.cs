@@ -156,6 +156,12 @@ public class Player : Entity<Player>
         states.Change<IdlePlayerState>();
     }
 
+    public virtual void AccelerateToInputDirection()
+    {
+        var inputDirection = inputs.GetMovementCameraDirection();
+        Accelerate(inputDirection);
+    }
+
     public override void ApplyDamage(int amount, Vector3 origin)
     {
         if (!health.isEmpty && !health.recovering)
@@ -183,7 +189,7 @@ public class Player : Entity<Player>
         }
     }
 
-    public virtual void spin()
+    public virtual void Spin()
     {
         var canAirSpin = (isGrounded || stats.current.canAirSpin) && airSpinCount < stats.current.canAirSpinCount;
         if (stats.current.canSpin && canAirSpin && !holding && inputs.GetSpinDown())
@@ -197,4 +203,7 @@ public class Player : Entity<Player>
             playerEvents.OnSpin?.Invoke();
         }
     }
+
+
+    public virtual void ResetAirSpinCount() => airSpinCount = 0;
 }

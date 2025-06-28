@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7159658377673714805}
   m_Layer: 0
   m_Name: Lily
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,21 @@ MonoBehaviour:
   - WalkPlayerState
   - BrakePlayerState
   - FallPlayerState
+  - HurtPlayerState
+  - DiePlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - SpinPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
+  - BackflipPlayerState
   - BackflipPlayerState
 --- !u!114 &5910283242886582421
 MonoBehaviour:

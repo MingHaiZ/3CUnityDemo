@@ -26,7 +26,7 @@ public abstract class EntityState<T> where T : Entity<T>
     public void Step(T entity)
     {
         OnStep(entity);
-        timeSinceEntered -= Time.deltaTime;
+        timeSinceEntered += Time.deltaTime;
     }
 
     protected abstract void OnEnter(T entity);
