@@ -19,6 +19,7 @@ public class FallPlayerState : PlayerState
         player.Jump();
         player.Spin();
         player.PickAndThrow();
+        player.StompAttack();
 
         if (player.isGrounded)
         {

@@ -49,13 +49,14 @@ public class WayPointManager : MonoBehaviour
             StartCoroutine(Change(next));
         } else if (mode == WaypointMode.Loop)
         {
-            if (index + 1 < waypoints.Count)
-            {
-                StartCoroutine(Change(index + 1));
-            } else
-            {
-                StartCoroutine(Change(0));
-            }
+            // if (index + 1 < waypoints.Count)
+            // {
+            //     StartCoroutine(Change(index + 1));
+            // } else
+            // {
+            //     StartCoroutine(Change(0));
+            // }
+            StartCoroutine(Change((index + 1) % waypoints.Count));
         } else if (mode == WaypointMode.Once)
         {
             if (index + 1 < waypoints.Count)

@@ -46,6 +46,10 @@ public abstract class Entity : MonoBehaviour
     public virtual bool IsPointUnderStep(Vector3 point) => stepPosition.y > point.y;
 
     public abstract void ApplyDamage(int amount, Vector3 origin);
+
+    public float groundAngle { get; protected set; }
+    public Vector3 groundNormal { get; protected set; }
+    public Vector3 localSlopeDirection { get; protected set; }
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>
@@ -87,7 +91,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
     protected void FixedUpdate()
     {
-        if (controller.enabled || m_collider)
+        if (controller.enabled || m_collider != null)
         {
             HandleGround();
             HandleContacts();
@@ -197,10 +201,31 @@ public abstract class Entity<T> : Entity where T : Entity<T>
                 {
                     HandleHighLedge(hit);
                 }
+            } else if (IsPointUnderStep(hit.point))
+            {
+                UpdateGround(hit);
+                if (Vector3.Angle(hit.normal, Vector3.up) >= controller.slopeLimit)
+                {
+                }
+            } else
+            {
+                HandleHighLedge(hit);
             }
         } else
         {
             ExitGround();
+        }
+    }
+
+    private void UpdateGround(RaycastHit hit)
+    {
+        if (isGrounded)
+        {
+            groundHit = hit;
+            groundNormal = groundHit.normal;
+            groundAngle = Vector3.Angle(Vector3.up, groundHit.normal);
+            localSlopeDirection = new Vector3(groundNormal.x, 0, groundNormal.z).normalized;
+            transform.parent = hit.collider.CompareTag(GameTag.Platform) ? hit.transform : null;
         }
     }
 

@@ -111,8 +111,9 @@ public class Player : Entity<Player>
         // 这里提到了土狼时间,之前玩APEX的了解过,有点意思
         var canMultiJump = (jumpCounter > 0) && (jumpCounter < stats.current.multiJumps);
         var canCoyoteJump = (jumpCounter == 0) && (Time.time < lastGroundTime + stats.current.coyoteJumpThreshold);
+        var holdJump = !holding;
 
-        if (isGrounded || canMultiJump || canCoyoteJump)
+        if ((isGrounded || canMultiJump || canCoyoteJump) && holdJump)
         {
             if (inputs.GetJumpDown())
             {
@@ -149,10 +150,10 @@ public class Player : Entity<Player>
         {
             var force = lateralVelocity.magnitude * stats.current.throwVelocityMultiplier;
             pickable.Release(transform.forward, force);
-            
+
             pickable = null;
             holding = false;
-            
+
             playerEvents.OnThrow?.Invoke();
         }
     }
@@ -252,6 +253,19 @@ public class Player : Entity<Player>
         {
             pickable = null;
             holding = false;
+        }
+    }
+
+    protected override bool EvaluateLanding(RaycastHit hit)
+    {
+        return base.EvaluateLanding(hit) && !hit.collider.CompareTag(GameTag.Spring);
+    }
+
+    public void StompAttack()
+    {
+        if (inputs.GetStompDown())
+        {
+            states.Change<StompPlayerState>();
         }
     }
 }

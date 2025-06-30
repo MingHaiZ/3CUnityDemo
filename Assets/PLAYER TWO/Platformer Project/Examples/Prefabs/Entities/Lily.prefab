@@ -174,7 +174,7 @@ MonoBehaviour:
   - BackflipPlayerState
   - SpinPlayerState
   - BackflipPlayerState
-  - BackflipPlayerState
+  - StompPlayerState
   - BackflipPlayerState
   - BackflipPlayerState
   - BackflipPlayerState
@@ -266,6 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6083463600169336265}
   - component: {fileID: 241403749041692624}
+  - component: {fileID: 5917414826780990381}
   m_Layer: 0
   m_Name: Stomp Hitbox
   m_TagString: Untagged
@@ -303,12 +304,32 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5917414826780990381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973316817680818135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d46d52317f4e8c9e9c54eaf8a2cc3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  breakObjects: 1
+  rebound: 1
+  reboundMinForce: 10
+  reboundMaxForce: 25
+  pushBack: 0
+  pushBackMinMagnitute: 10
+  pushBackMaxMagnitute: 25
 --- !u!1 &3167214542204185418
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498073371067495085}
   - component: {fileID: 7388399265220342888}
+  - component: {fileID: 4416214255163475988}
   m_Layer: 0
   m_Name: Heavy Stomp Hitbox
   m_TagString: Untagged
@@ -578,6 +600,101 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 0.5, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4416214255163475988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834111371478565692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d20b52ff614666a0a379eedb1b7349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  events:
+    OnJump:
+      m_PersistentCalls:
+        m_Calls: []
+    OnHurt:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDie:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSpin:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPickUp:
+      m_PersistentCalls:
+        m_Calls: []
+    OnThrow:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStop:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompStarted:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompFalling:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7388399265220342888}
+          m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    OnStompLanding:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStompEnding:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7388399265220342888}
+          m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnLedgeGrabbed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnLedgeClimbing:
+      m_PersistentCalls:
+        m_Calls: []
+    OnAirDive:
+      m_PersistentCalls:
+        m_Calls: []
+    OnBackflip:
+      m_PersistentCalls:
+        m_Calls: []
+    OnGlidingStart:
+      m_PersistentCalls:
+        m_Calls: []
+    OnGlidingStop:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDashStarted:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDashEnded:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &6361865368257376572
 PrefabInstance:
   m_ObjectHideFlags: 0

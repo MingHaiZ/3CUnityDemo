@@ -5,4 +5,6 @@ public class GameTag
     public static readonly string Hazard = "Hazard";
     public static readonly string VolumeWater = "Volume/Water";
     public static readonly string Enemy = "Enemy";
+    public static readonly string Platform = "Platform";
+    public static readonly string Spring = "Spring";
 }
