@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 4452954751493554976}
   - component: {fileID: 8594668897267022143}
   - component: {fileID: 5978655227245264513}
+  - component: {fileID: 8329723001676327337}
+  - component: {fileID: 1680646840132322331}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -172,7 +174,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   states:
-  - IdleEnemyState
+  - WayPointEnemyState
 --- !u!114 &8594668897267022143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,41 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &8329723001676327337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526531197197607495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13754c45d44a4efabedfc7567393ceff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateName: State
+  lastStateName: Last State
+  lateralSpeedName: Lateral Speed
+  verticalSpeedName: Vertical Speed
+  healthName: Health
+  isGroundedName: Is Grounded
+  onStateChangedName: On State Changed
+  animator: {fileID: 2526298343448061378}
+--- !u!114 &1680646840132322331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526531197197607495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0069ef2d6d4542f68a160a8e1165c07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 1
+  waypoints: []
+  mode: 0
 --- !u!1001 &2545884115991160810
 PrefabInstance:
   m_ObjectHideFlags: 0

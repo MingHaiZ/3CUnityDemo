@@ -90,6 +90,7 @@ public class PlayerCamera : MonoBehaviour
         m_cameraBody.CameraDistance = m_cameraDistance;
     }
 
+    // 控制摄像机围绕target水平和垂直旋转
     protected virtual void HandleOrbit()
     {
         if (canOrbit)
@@ -107,6 +108,7 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
+    // 控制相机是否根据玩家朝向改变偏航角
     protected virtual void HandleVelocityOrbit()
     {
         if (CanOrbitWithVelocity && player.isGrounded)

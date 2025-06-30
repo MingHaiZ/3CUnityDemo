@@ -9,12 +9,12 @@ public class Enemy : Entity<Enemy>
     public Player player { get; protected set; }
     public Health health { get; protected set; }
     public EnemyStatsManager stats { get; protected set; }
-    public WayPointManager wayPoints { get; protected set; }
+    public WayPointManager waypoints { get; protected set; }
 
     protected virtual void InitializeHealth() => health = GetComponent<Health>();
     protected virtual void InitializeTag() => tag = GameTag.Enemy;
     protected virtual void InitializeStatsManager() => stats = GetComponent<EnemyStatsManager>();
-    protected virtual void InitializeWayPointManager() => wayPoints = GetComponent<WayPointManager>();
+    protected virtual void InitializeWayPointManager() => waypoints = GetComponent<WayPointManager>();
 
     
     public virtual void Accelerate(Vector3 direction, float acceleration, float topSpeed) =>
@@ -24,7 +24,7 @@ public class Enemy : Entity<Enemy>
     public virtual void Firction() => Decelerate(stats.current.firction);
     public virtual void SnapToGround() => SnapToGround(stats.current.snapForce);
     public virtual void Gravity() => Gravity(stats.current.gravity);
-    public virtual void FaveDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);
+    public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);
 
     protected virtual void HandleSight()
     {
