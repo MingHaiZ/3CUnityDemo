@@ -268,4 +268,10 @@ public class Player : Entity<Player>
             states.Change<StompPlayerState>();
         }
     }
+
+    public virtual void SetRespawn(Vector3 position, Quaternion rotation)
+    {
+        m_respawnPosition = position;
+        m_respawnRotation = rotation;
+    }
 }

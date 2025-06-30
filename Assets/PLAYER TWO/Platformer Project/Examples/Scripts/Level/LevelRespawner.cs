@@ -65,6 +65,17 @@ public class LevelRespawner : Singleton<LevelRespawner>
         m_fader.FadeOut(() => StartCoroutine(RespawnRoutine(consumeRetries)));
     }
 
+    protected virtual IEnumerator RestartRoutine()
+    {
+        m_pauser.Pause(false);
+        m_pauser.canPause = false;
+        m_level.player.inputs.enabled = false;
+
+        yield return new WaitForSeconds(restartFadeOutDelay);
+        
+        GameLoader.instance.Reload();
+    }
+
     protected virtual void ResetCamera()
     {
         foreach (var camera in m_cameras)
@@ -77,6 +88,12 @@ public class LevelRespawner : Singleton<LevelRespawner>
     {
         StopAllCoroutines();
         StartCoroutine(Routine(consumeRetries));
+    }
+
+    public virtual void Restart()
+    {
+        StopAllCoroutines();
+        StartCoroutine(RestartRoutine());
     }
 
     private void Start()
