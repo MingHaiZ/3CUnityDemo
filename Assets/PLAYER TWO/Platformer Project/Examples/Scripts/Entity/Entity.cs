@@ -93,7 +93,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         if (controller.enabled || m_collider != null)
         {
-            HandleGround();
+            
             HandleContacts();
         }
     }
@@ -102,6 +102,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         if (controller.enabled)
         {
+            HandleGround();
             HandleState();
             HandleController();
             OnUpdate();

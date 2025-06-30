@@ -4969,7 +4969,7 @@ MonoBehaviour:
   hideDuration: 0.5
   hasLifeTime: 0
   lifeTimeDuration: 5
-  usePhysics: 0
+  usePhysics: 1
   gravity: 15
   initialVelocity: {x: 0, y: 12, z: 0}
   randomizeInitalDirection: 1
