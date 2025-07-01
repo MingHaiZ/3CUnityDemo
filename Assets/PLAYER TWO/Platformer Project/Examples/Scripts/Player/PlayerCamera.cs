@@ -144,10 +144,10 @@ public class PlayerCamera : MonoBehaviour
         {
             var offset = target.y - previousPosition.y - verticalAirUpDeadZone;
             targetHeight += Mathf.Min(offset, maxVerAirVerticalSpeed * Time.deltaTime);
-        } else if (target.y < previousPosition.y - verticalDownDeadZone)
+        } else if (target.y < previousPosition.y - verticalAirDownDeadZone)
         {
-            var offset = target.y - previousPosition.y + verticalDownDeadZone;
-            targetHeight += Mathf.Min(offset, -maxVerAirVerticalSpeed * Time.deltaTime);
+            var offset = target.y - previousPosition.y + verticalAirDownDeadZone;
+            targetHeight += Mathf.Max(offset, -maxVerAirVerticalSpeed * Time.deltaTime);
         }
 
         m_cameraTargetPosition = new Vector3(target.x, targetHeight, target.z);
