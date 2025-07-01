@@ -230,6 +230,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   pickableSlot: {fileID: 3033692261970487872}
+  skin: {fileID: 6646512120838783423}
 --- !u!114 &5651797369211599651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +268,8 @@ MonoBehaviour:
   - SpinPlayerState
   - BackflipPlayerState
   - StompPlayerState
-  - BackflipPlayerState
-  - BackflipPlayerState
+  - LedgeHangingPlayerState
+  - LedgeClimbingPlayerState
   - BackflipPlayerState
   - BackflipPlayerState
   - BackflipPlayerState
@@ -433,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  breakObjects: 1
+  breakObjects: 0
   rebound: 1
   reboundMinForce: 10
   reboundMaxForce: 25

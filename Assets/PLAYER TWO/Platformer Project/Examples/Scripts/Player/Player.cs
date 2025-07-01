@@ -18,6 +18,10 @@ public class Player : Entity<Player>
     public Pickable pickable { get; protected set; }
 
     public Transform pickableSlot;
+    public Transform skin;
+
+    public Vector3 m_skinInitialPosition;
+    public Quaternion m_skinInitialRotation;
 
     protected Vector3 m_respawnPosition;
     protected Quaternion m_respawnRotation;
@@ -35,6 +39,7 @@ public class Player : Entity<Player>
     public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);
     public virtual void Decelerate() => Decelerate(stats.current.deceleration);
     public virtual void Friction() => Decelerate(stats.current.friction);
+    public virtual void ResetJumps() => jumpCounter = 0;
     public virtual void InitializeTag() => tag = GameTag.Player;
 
     protected override void Awake()
@@ -45,6 +50,7 @@ public class Player : Entity<Player>
         InitializeHealth();
         InitializeTag();
         InitializeRespawn();
+        InitializeSkin();
     }
 
     public virtual void Accelerate(Vector3 direction)
@@ -127,7 +133,7 @@ public class Player : Entity<Player>
         }
     }
 
-    private void Jump(float height)
+    public void Jump(float height)
     {
         jumpCounter++;
         verticalVelocity = Vector3.up * height;
@@ -273,5 +279,81 @@ public class Player : Entity<Player>
     {
         m_respawnPosition = position;
         m_respawnRotation = rotation;
+    }
+
+    public virtual void LedgeGrab()
+    {
+        if (stats.current.canLedgeHang && velocity.y < 0 && !holding &&
+            states.ContainsStateOfType(typeof(LedgeHangingPlayerState)) && DetectingLedge(
+                stats.current.ledgeMaxForwardDistance, stats.current.ledgeMaxDownwardDistance, out var hit))
+        {
+            if (!(hit.collider is CapsuleCollider) && !(hit.collider is SphereCollider))
+            {
+                var ledgeDistance = radius + stats.current.ledgeMaxForwardDistance;
+                var lateralOffset = transform.forward * ledgeDistance;
+                var verticalOffset = Vector3.down * height * 0.5f - center;
+
+                velocity = Vector3.zero;
+
+                transform.parent = hit.collider.CompareTag(GameTag.Platform) ? hit.transform.parent : null;
+                transform.position = hit.point - lateralOffset + verticalOffset;
+
+                states.Change<LedgeHangingPlayerState>();
+
+                playerEvents.OnLedgeGrabbed?.Invoke();
+            }
+        }
+    }
+
+    protected virtual bool DetectingLedge(float forwardDistance, float downwardDistance, out RaycastHit ledgeHit)
+    {
+        var contactOffset = Physics.defaultContactOffset + positionDelta;
+        var ledgeMaxDistance = radius + forwardDistance;
+        var ledgeHeightOffset = height * 0.5f + contactOffset;
+        var upwardOffset = transform.up * ledgeHeightOffset;
+        var forwardOffset = transform.forward * ledgeMaxDistance;
+
+        if (Physics.Raycast(position + upwardOffset, transform.forward, ledgeMaxDistance, Physics.DefaultRaycastLayers,
+                QueryTriggerInteraction.Ignore)
+            || Physics.Raycast(position + forwardOffset * 0.01f, transform.up, ledgeHeightOffset,
+                Physics.DefaultRaycastLayers,
+                QueryTriggerInteraction.Ignore))
+        {
+            ledgeHit = new RaycastHit();
+            return false;
+        }
+
+        var origin = position + upwardOffset + forwardOffset;
+        var distance = downwardDistance + contactOffset;
+
+        return Physics.Raycast(origin, Vector3.down, out ledgeHit, distance, stats.current.ledgeHangingLayers,
+            QueryTriggerInteraction.Ignore);
+    }
+
+    public virtual void SetSkinParent(Transform parent)
+    {
+        if (skin)
+        {
+            skin.parent = parent;
+        }
+    }
+
+    public virtual void InitializeSkin()
+    {
+        if (skin)
+        {
+            m_skinInitialPosition = skin.localPosition;
+            m_skinInitialRotation = skin.localRotation;
+        }
+    }
+
+    public virtual void ResetSkinParent()
+    {
+        if (skin)
+        {
+            skin.parent = transform;
+            skin.localPosition = Vector3.zero;
+            skin.localRotation = Quaternion.identity;
+        }
     }
 }

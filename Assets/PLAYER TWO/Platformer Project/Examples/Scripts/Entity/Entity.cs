@@ -50,6 +50,8 @@ public abstract class Entity : MonoBehaviour
     public float groundAngle { get; protected set; }
     public Vector3 groundNormal { get; protected set; }
     public Vector3 localSlopeDirection { get; protected set; }
+    public float positionDelta { get; protected set; }
+    public Vector3 lastPosition { get; protected set; }
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>
@@ -93,7 +95,6 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         if (controller.enabled || m_collider != null)
         {
-            
             HandleContacts();
         }
     }
@@ -105,8 +106,23 @@ public abstract class Entity<T> : Entity where T : Entity<T>
             HandleGround();
             HandleState();
             HandleController();
+
             OnUpdate();
         }
+    }
+
+    protected virtual void LateUpdate()
+    {
+        if (controller.enabled)
+        {
+            HandlePosition();
+        }
+    }
+
+    private void HandlePosition()
+    {
+        positionDelta = (position - lastPosition).magnitude;
+        lastPosition = position;
     }
 
     protected virtual void OnUpdate()
@@ -339,5 +355,15 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         {
             verticalVelocity += Vector3.down * gravity * gravityMultiplier * Time.deltaTime;
         }
+    }
+
+    public virtual bool FitsInPosition(Vector3 position)
+    {
+        var radius = controller.radius - controller.skinWidth;
+        var offset = height * 0.5f - radius;
+
+        var top = position + Vector3.up * offset;
+        var bottom = position - Vector3.up * offset;
+        return !Physics.CheckCapsule(top, bottom, radius, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
     }
 }

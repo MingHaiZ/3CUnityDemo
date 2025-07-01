@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerStats : EntityStats<PlayerStats>
 {
@@ -71,4 +72,23 @@ public class PlayerStats : EntityStats<PlayerStats>
     public bool canPickUpOnAir = false;
     public float throwVelocityMultiplier = 1.5f;
     public float pickUpDistance = 0.5f;
+
+    [Header("Ledge Hanging Stats")]
+    public bool canLedgeHang = true;
+
+    public LayerMask ledgeHangingLayers;
+    public Vector3 ledgeHangingSkinOffset;
+    public float ledgeMaxForwardDistance = 0.25f;
+    public float ledgeMaxDownwardDistance = 0.25f;
+    public float ledgeSideMaxDistance = 0.5f;
+    public float ledgeSideHeightOffset = 0.15f;
+    public float ledgeSideCollisionRadius = 0.25f;
+    public float ledgeMovementSpeed = 1.5f;
+
+    [Header("Ledge Climbing Stats")]
+    public bool canClimbLedge = true;
+
+    public LayerMask ledgeClimbingLayers;
+    public Vector3 ledgeClimbingSkinOffset;
+    public float leggeClimbingDuration = 1f;
 }
