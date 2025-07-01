@@ -6,4 +6,6 @@ public class GameController : MonoBehaviour
     protected GameLoader m_loader => GameLoader.instance;
 
     public virtual void LoadScene(string sceneName) => m_loader.Load(sceneName);
+
+    public virtual void AddRetries(int amount) => m_game.retries += amount;
 }

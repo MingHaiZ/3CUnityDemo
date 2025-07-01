@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Spring
   - Platform
+  - Volume/Water
   layers:
   - Default
   - TransparentFX

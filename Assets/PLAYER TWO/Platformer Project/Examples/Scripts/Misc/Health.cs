@@ -41,6 +41,8 @@ public class Health : MonoBehaviour
         }
     }
 
+    public virtual void Increase(int amount) => current = Mathf.Clamp(current + amount, 0, max);
+
     public virtual void Reset()
     {
         current = initial;
