@@ -15,8 +15,15 @@ MonoBehaviour:
   rotationSpeed: 970
   friction: 16
   gravityTopSpeed: 50
-  gravity: 38
+  gravity: 49
   fallGravity: 65
+  pushForce: 4
+  snapForce: 15
+  canSpin: 1
+  canAirSpin: 1
+  canAirSpinCount: 1
+  airSignUpwardForce: 10
+  spinDuration: 0.5
   brakeThreshold: -0.8
   turningDrag: 28
   acceleration: 13
@@ -37,3 +44,31 @@ MonoBehaviour:
   coyoteJumpThreshold: 0.15
   maxJumpHeight: 17
   minJumpHeight: 10
+  stompAirTime: 0.8
+  canStompAttack: 1
+  stompDownWardForce: 20
+  stompGroundTime: 0.5
+  stompGroundLeapHeight: 10
+  hurtBackwardsForce: 5
+  hurtUpwardsForce: 10
+  canPickUp: 1
+  canPickUpOnAir: 0
+  throwVelocityMultiplier: 1.5
+  pickUpDistance: 0.5
+  canLedgeHang: 1
+  ledgeHangingLayers:
+    serializedVersion: 2
+    m_Bits: 1537
+  ledgeHangingSkinOffset: {x: 0, y: 0, z: 0}
+  ledgeMaxForwardDistance: 0.25
+  ledgeMaxDownwardDistance: 0.25
+  ledgeSideMaxDistance: 0.5
+  ledgeSideHeightOffset: 0.15
+  ledgeSideCollisionRadius: 0.25
+  ledgeMovementSpeed: 1.5
+  canClimbLedge: 1
+  ledgeClimbingLayers:
+    serializedVersion: 2
+    m_Bits: 2561
+  ledgeClimbingSkinOffset: {x: 0, y: 0, z: 0}
+  leggeClimbingDuration: 1

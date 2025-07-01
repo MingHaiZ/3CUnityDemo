@@ -64,7 +64,7 @@ public class PlayerParticles : MonoBehaviour
     {
         m_player = GetComponent<Player>();
         m_player.entityEvents.OnGroundEnter.AddListener(HandleLandParticle);
-        m_player.entityEvents.OnHurt.AddListener(HandleHurtParticle);
+        m_player.playerEvents.OnHurt.AddListener(HandleHurtParticle);
     }
 
     protected virtual void Update()
