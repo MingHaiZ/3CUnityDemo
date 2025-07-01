@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 3821077180477371545}
-  particle: {fileID: 7388354913283873054, guid: 5818a5f85aeeb9a4ba7b5ac734694a2c, type: 3}
+  particle: {fileID: 7687407743885174655}
   ghostingDuration: 0.5
   collectOnContact: 1
   clip: {fileID: 8300000, guid: 1170fdadbd6bf0b46b820aae14f65e17, type: 3}
@@ -166,9 +166,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2772669799652589146, guid: 5818a5f85aeeb9a4ba7b5ac734694a2c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2963901376489273805, guid: 5818a5f85aeeb9a4ba7b5ac734694a2c, type: 3}
       propertyPath: m_Name
       value: Coin Collection Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7388354913283873054, guid: 5818a5f85aeeb9a4ba7b5ac734694a2c, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -178,6 +186,11 @@ PrefabInstance:
 --- !u!4 &347736669346199871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 645410660524558174, guid: 5818a5f85aeeb9a4ba7b5ac734694a2c, type: 3}
+  m_PrefabInstance: {fileID: 875841529427590753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7687407743885174655 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7388354913283873054, guid: 5818a5f85aeeb9a4ba7b5ac734694a2c, type: 3}
   m_PrefabInstance: {fileID: 875841529427590753}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4163112360602061256

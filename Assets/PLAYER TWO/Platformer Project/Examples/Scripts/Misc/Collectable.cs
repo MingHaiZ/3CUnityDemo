@@ -148,12 +148,11 @@ public class Collectable : MonoBehaviour
 
     protected virtual void HandleSweep()
     {
-        
         var direction = m_velocity.normalized;
         var magnitude = m_velocity.magnitude;
         var distance = magnitude * Time.deltaTime;
 
-        
+
         if (Physics.SphereCast(transform.position, collisionRadius, direction, out var hit, distance,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
@@ -180,7 +179,7 @@ public class Collectable : MonoBehaviour
      */
     public virtual void Collect(Player player)
     {
-        if (m_vanished && !m_ghosting)
+        if (!m_vanished && !m_ghosting)
         {
             // ghosting 就是在金币从箱子里面爆出来的时候不要立刻能够吃到，直到ghosting结束了才能吃到
             if (!hidden)
@@ -191,13 +190,13 @@ public class Collectable : MonoBehaviour
                 {
                     particle.Play();
                 }
+            } else
+            {
+                StartCoroutine(QuickShowRoutine());
             }
-        } else
-        {
-            StartCoroutine(QuickShowRoutine());
-        }
 
-        StartCoroutine(CollectRoutine(player));
+            StartCoroutine(CollectRoutine(player));
+        }
     }
 
     protected virtual IEnumerator CollectRoutine(Player player)
@@ -216,8 +215,9 @@ public class Collectable : MonoBehaviour
         var elapsedTime = 0f;
         var initialPosition = transform.position;
         var targetPosition = initialPosition + Vector3.up * quickShowHeight;
-        
+
         display.SetActive(true);
+        particle.Play();
         m_collider.enabled = false;
 
         while (elapsedTime < quickShowDuration)
