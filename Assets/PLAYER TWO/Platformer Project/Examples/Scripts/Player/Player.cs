@@ -42,6 +42,8 @@ public class Player : Entity<Player>
     public virtual void ResetJumps() => jumpCounter = 0;
     public virtual void InitializeTag() => tag = GameTag.Player;
 
+    public virtual void StartGrind() => states.Change<RailGrindPlayerState>();
+
     protected override void Awake()
     {
         base.Awake();
@@ -51,6 +53,19 @@ public class Player : Entity<Player>
         InitializeTag();
         InitializeRespawn();
         InitializeSkin();
+
+        entityEvents.OnGroundEnter.AddListener(() =>
+        {
+            ResetJumps();
+            ResetAirSpinCount();
+        });
+
+        entityEvents.OnRailsEnter.AddListener(() =>
+        {
+            ResetJumps();
+            ResetAirSpinCount();
+            StartGrind();
+        });
     }
 
     public virtual void Accelerate(Vector3 direction)

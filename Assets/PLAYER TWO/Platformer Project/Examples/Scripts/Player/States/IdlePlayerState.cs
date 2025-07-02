@@ -4,7 +4,6 @@ public class IdlePlayerState : PlayerState
 {
     protected override void OnEnter(Player player)
     {
-        player.ResetAirSpinCount();
     }
 
     protected override void OnExit(Player player)

@@ -17,6 +17,8 @@ public class PlayerInputManager : MonoBehaviour
     protected InputAction m_pickAndDrop;
     protected InputAction m_stomp;
     protected InputAction m_releaseLedge;
+    protected InputAction m_grindBrake;
+    protected InputAction m_Dash;
     protected Camera m_camera;
     protected float? m_lastJumpTime;
     protected const float k_jumpBuffer = 0.15f;
@@ -64,6 +66,8 @@ public class PlayerInputManager : MonoBehaviour
         m_pickAndDrop = actions["PickAndDrop"];
         m_stomp = actions["Stomp"];
         m_releaseLedge = actions["ReleaseLedge"];
+        m_grindBrake = actions["Grind Brake"];
+        m_Dash = actions["Dash"];
     }
 
     public virtual bool GetRun() => m_run.IsInProgress();
@@ -120,6 +124,9 @@ public class PlayerInputManager : MonoBehaviour
     public virtual bool GetJumpUp() => m_jump.WasReleasedThisFrame();
     public virtual bool GetPickAndDropDown() => m_pickAndDrop.WasPressedThisFrame();
     public virtual bool GetReleaseLedgeDown() => m_releaseLedge.WasPressedThisFrame();
+    public virtual bool GetGrindBrake() => m_grindBrake.WasPressedThisFrame();
+    public virtual bool GetDashDown() => m_Dash.WasPressedThisFrame();
+
 
     public virtual bool IsLookingWithMouse()
     {

@@ -223,7 +223,7 @@ MonoBehaviour:
   - BackflipPlayerState
   - BackflipPlayerState
   - BackflipPlayerState
-  - BackflipPlayerState
+  - RailGrindPlayerState
 --- !u!114 &5910283242886582421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +317,9 @@ MonoBehaviour:
   hurtDust: {fileID: 8247378046557685536}
   landDust: {fileID: 8931723497048692841}
   starsDust: {fileID: 8247378046557685536}
+  dashDust: {fileID: 0}
+  speedTrails: {fileID: 8247378046557685536}
+  grindTrails: {fileID: 8247378046557685536}
 --- !u!114 &4516549893959073674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,7 +865,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 09788b1b7db5d234b9412b193468fc85, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

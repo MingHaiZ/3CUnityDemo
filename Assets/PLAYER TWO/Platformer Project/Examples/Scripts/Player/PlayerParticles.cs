@@ -9,6 +9,9 @@ public class PlayerParticles : MonoBehaviour
     public ParticleSystem hurtDust;
     public ParticleSystem landDust;
     public ParticleSystem starsDust;
+    public ParticleSystem dashDust;
+    public ParticleSystem speedTrails;
+    public ParticleSystem grindTrails;
     protected Player m_player;
 
     public virtual void Play(ParticleSystem particle)
@@ -49,6 +52,17 @@ public class PlayerParticles : MonoBehaviour
         }
     }
 
+    protected virtual void HandleRailParticle()
+    {
+        if (m_player.onRails)
+        {
+            Play(grindTrails);
+        } else
+        {
+            Stop(grindTrails, true);
+        }
+    }
+
     public virtual void Stop(ParticleSystem particle, bool clear = false)
     {
         if (particle.isPlaying)
@@ -60,15 +74,24 @@ public class PlayerParticles : MonoBehaviour
         }
     }
 
+    public virtual void OnDashStarted()
+    {
+        Play(dashDust);
+        Play(speedTrails);
+    }
+
     protected virtual void Start()
     {
         m_player = GetComponent<Player>();
         m_player.entityEvents.OnGroundEnter.AddListener(HandleLandParticle);
         m_player.playerEvents.OnHurt.AddListener(HandleHurtParticle);
+        m_player.playerEvents.OnDashStarted.AddListener(OnDashStarted);
+        m_player.playerEvents.OnDashEnded.AddListener(() => { Stop(speedTrails, true); });
     }
 
     protected virtual void Update()
     {
         HandleWalkParticle();
+        HandleRailParticle();
     }
 }

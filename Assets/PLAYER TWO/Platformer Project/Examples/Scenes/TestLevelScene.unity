@@ -3850,7 +3850,7 @@ GameObject:
   - component: {fileID: 2056321101}
   m_Layer: 12
   m_Name: Spline
-  m_TagString: Untagged
+  m_TagString: Interactive/Rail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4524,7 +4524,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1942354337039423205, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.24
+      value: 22.53
       objectReference: {fileID: 0}
     - target: {fileID: 1942354337039423205, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4532,7 +4532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1942354337039423205, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.5
+      value: 10.66
       objectReference: {fileID: 0}
     - target: {fileID: 1942354337039423205, guid: c37f33dfb2307754ab87df8b0e749a68, type: 3}
       propertyPath: m_LocalRotation.w

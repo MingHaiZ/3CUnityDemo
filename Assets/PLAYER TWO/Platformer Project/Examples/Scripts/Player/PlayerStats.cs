@@ -29,6 +29,8 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float topSpeed = 6f;
     public float airAcceleration = 32f;
     public float deceleration = 28f;
+    public float slopeUpwardForce = 25f;
+    public float slopeDownwardForce = 28f;
 
     [Header("Running stats")]
     public float runningAcceleration = 16f;
@@ -99,4 +101,17 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float minGrindInitialSpeed = 10f;
     public float minGrindSpeed = 5f;
     public float maxGrindSpeed = 25f;
+
+    [Header("Rail Grinding Brake")]
+    public bool canGrindBrake = true;
+
+    public float grindBrakeDeceleration = 10f;
+
+    [Header("Rail Grinding Dash Stats")]
+    public bool canGrindDash = true;
+
+    public bool applyGrindingSlopeFactor = true;
+
+    public float grindDashCoolDown = 0.5f;
+    public float grindDashForce = 25f;
 }
