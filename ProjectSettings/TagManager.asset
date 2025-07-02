@@ -10,6 +10,7 @@ TagManager:
   - Spring
   - Platform
   - Volume/Water
+  - Interactive/Rail
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Camera Obstructor
   - Ignore Ledge Hanging
   - Ignore Ledge Climbing
-  - 
+  - Unstable Surface
   - 
   - 
   - 

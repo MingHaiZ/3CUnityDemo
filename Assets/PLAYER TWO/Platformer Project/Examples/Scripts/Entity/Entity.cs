@@ -1,6 +1,7 @@
 using System;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.Splines;
 
 
 public abstract class Entity : MonoBehaviour
@@ -52,6 +53,10 @@ public abstract class Entity : MonoBehaviour
     public Vector3 localSlopeDirection { get; protected set; }
     public float positionDelta { get; protected set; }
     public Vector3 lastPosition { get; protected set; }
+
+    public SplineContainer rails { get; protected set; }
+    protected Rigidbody m_rigidbody;
+    public bool onRails { get; set; }
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>
@@ -84,11 +89,16 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         originalHeight = controller.height;
     }
 
+    protected virtual void InitializeRigidbody()
+    {
+        m_rigidbody = gameObject.AddComponent<Rigidbody>();
+        m_rigidbody.isKinematic = true;
+    }
+
     protected virtual void Awake()
     {
         InitializeController();
         InitializeStateManager();
-        InitializeCollider();
     }
 
     protected void FixedUpdate()
@@ -106,7 +116,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
             HandleGround();
             HandleState();
             HandleController();
-
+            HandleSpline();
             OnUpdate();
         }
     }
@@ -123,6 +133,22 @@ public abstract class Entity<T> : Entity where T : Entity<T>
     {
         positionDelta = (position - lastPosition).magnitude;
         lastPosition = position;
+    }
+
+    protected virtual void HandleSpline()
+    {
+        var distance = (height * 0.5f) + height * 0.5f;
+        if (SphereCast(-transform.up, distance, out var hit)
+            && hit.collider.CompareTag(GameTag.InteractiveRail))
+        {
+            if (!onRails && verticalVelocity.y <= 0)
+            {
+                EnterRail(hit.collider.GetComponent<SplineContainer>());
+            }
+        } else
+        {
+            ExitRail();
+        }
     }
 
     protected virtual void OnUpdate()
@@ -365,5 +391,39 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         var top = position + Vector3.up * offset;
         var bottom = position - Vector3.up * offset;
         return !Physics.CheckCapsule(top, bottom, radius, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+    }
+
+    public virtual void UseCustomCollision(bool value)
+    {
+        controller.enabled = !value;
+
+        if (value)
+        {
+            InitializeCollider();
+            InitializeRigidbody();
+        } else
+        {
+            Destroy(m_collider);
+            Destroy(m_rigidbody);
+        }
+    }
+
+    protected virtual void EnterRail(SplineContainer rails)
+    {
+        if (!onRails)
+        {
+            onRails = true;
+            this.rails = rails;
+            entityEvents.OnRailsEnter.Invoke();
+        }
+    }
+
+    public virtual void ExitRail()
+    {
+        if (onRails)
+        {
+            onRails = false;
+            entityEvents.OnRailsExit.Invoke();
+        }
     }
 }

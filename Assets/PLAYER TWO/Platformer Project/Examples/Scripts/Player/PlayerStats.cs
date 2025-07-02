@@ -91,4 +91,12 @@ public class PlayerStats : EntityStats<PlayerStats>
     public LayerMask ledgeClimbingLayers;
     public Vector3 ledgeClimbingSkinOffset;
     public float leggeClimbingDuration = 1f;
+
+    [Header("Rail Grinding Stats")]
+    public bool useCustomCollision = true;
+
+    public float grindRadiusOffset = 0.26f;
+    public float minGrindInitialSpeed = 10f;
+    public float minGrindSpeed = 5f;
+    public float maxGrindSpeed = 25f;
 }

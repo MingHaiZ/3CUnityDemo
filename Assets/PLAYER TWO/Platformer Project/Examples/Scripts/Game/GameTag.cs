@@ -7,4 +7,5 @@ public class GameTag
     public static readonly string Enemy = "Enemy";
     public static readonly string Platform = "Platform";
     public static readonly string Spring = "Spring";
+    public static readonly string InteractiveRail = "Interactive/Rail";
 }
