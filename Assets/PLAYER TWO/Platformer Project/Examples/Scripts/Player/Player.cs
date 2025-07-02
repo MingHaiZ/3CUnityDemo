@@ -68,6 +68,9 @@ public class Player : Entity<Player>
         });
     }
 
+    /**
+     * 计算速度
+     */
     public virtual void Accelerate(Vector3 direction)
     {
         var turningDrag = isGrounded && inputs.GetRun()
@@ -82,6 +85,11 @@ public class Player : Entity<Player>
         var finalAcceleration = isGrounded ? acceleration : stats.current.airAcceleration;
 
         Accelerate(direction, turningDrag, finalAcceleration, topSpeed);
+
+        if (!inputs.GetRun())
+        {
+            lateralVelocity = Vector3.ClampMagnitude(lateralVelocity, topSpeed);
+        }
     }
 
     // public virtual void Backflip(float force)

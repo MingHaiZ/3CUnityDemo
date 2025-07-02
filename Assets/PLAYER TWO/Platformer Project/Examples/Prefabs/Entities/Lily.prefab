@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 7159658377673714805}
   - component: {fileID: 7938864663223423289}
   - component: {fileID: 4516549893959073674}
+  - component: {fileID: 5220703973612443751}
   m_Layer: 0
   m_Name: Lily
   m_TagString: Untagged
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkDustMinSpeed: 3.5
   landingParticleMinSpeed: 5
+  dashParticleDelay: 1
   walkDust: {fileID: 1240801701340248304}
   hurtDust: {fileID: 8247378046557685536}
   landDust: {fileID: 8931723497048692841}
@@ -375,6 +377,48 @@ MonoBehaviour:
   startRailGrind: {fileID: 8300000, guid: 9d81e49a83cae4b4689a0b4aca032110, type: 3}
   railGrind: {fileID: 8300000, guid: 09788b1b7db5d234b9412b193468fc85, type: 3}
   grindAudio: {fileID: 4268526082461082655}
+--- !u!114 &5220703973612443751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219701247475986322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc1ba6548784448ab910f545d798fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaces:
+  - tag: Surface/Grass
+    footsteps:
+    - {fileID: 8300000, guid: e8ca8a0f2739fac4ea9a0e3a056c04da, type: 3}
+    - {fileID: 8300000, guid: e7a66535247226e43b16f613bc8815fb, type: 3}
+    - {fileID: 8300000, guid: 63b27ac9a725ca74a846df6013decaf8, type: 3}
+    landings:
+    - {fileID: 8300000, guid: e7a66535247226e43b16f613bc8815fb, type: 3}
+  - tag: Surface/Wood
+    footsteps:
+    - {fileID: 8300000, guid: b655c8406fe76e94cb32d681c8058edb, type: 3}
+    - {fileID: 8300000, guid: 2dca32b05e559144b8b755f12f490b6a, type: 3}
+    - {fileID: 8300000, guid: 0bc4ad053476e914cab7b20b94880ad3, type: 3}
+    landings:
+    - {fileID: 8300000, guid: 2dca32b05e559144b8b755f12f490b6a, type: 3}
+  - tag: Surface/Metal
+    footsteps:
+    - {fileID: 8300000, guid: 5288344f82fcb9044a767e2bbbf5f590, type: 3}
+    - {fileID: 8300000, guid: 7fb8c970368407b44942946d9bc00936, type: 3}
+    - {fileID: 8300000, guid: ad4f605a4bf074949a61b1135a3e4ce9, type: 3}
+    landings:
+    - {fileID: 8300000, guid: 7fb8c970368407b44942946d9bc00936, type: 3}
+  defaultLandings:
+  - {fileID: 8300000, guid: 21f4dfe163d3473439832314dc527047, type: 3}
+  defaultFootsteps:
+  - {fileID: 8300000, guid: b22f97dba0813824594b5c08639894df, type: 3}
+  - {fileID: 8300000, guid: 21f4dfe163d3473439832314dc527047, type: 3}
+  - {fileID: 8300000, guid: 62beeddcf3aaeb1408518db5d8b64251, type: 3}
+  footStepVolume: 0.5
+  stepOffset: 1.25
 --- !u!1 &2973316817680818135
 GameObject:
   m_ObjectHideFlags: 0
