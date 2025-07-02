@@ -1,8 +1,24 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public void AddHealth(Player player) => AddHealth(player, 1);
-    public virtual void AddHealth(Player player, int amount) => player.health.Increase(amount);
+    protected Player m_player;
+
+    protected Player player
+    {
+        get
+        {
+            if (!m_player)
+            {
+                m_player = FindObjectOfType<Player>();
+            }
+
+            return m_player;
+        }
+    }
+
+    public void AddHealth() => AddHealth(1);
+    public virtual void AddHealth(int amount) => player.health.Increase(amount);
 }

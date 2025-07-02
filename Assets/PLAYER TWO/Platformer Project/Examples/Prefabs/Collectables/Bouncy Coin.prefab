@@ -82,7 +82,7 @@ MonoBehaviour:
   hasLifeTime: 1
   lifeTimeDuration: 5
   usePhysics: 1
-  gravity: 15
+  gravity: 30
   initialVelocity: {x: 0, y: 12, z: 0}
   randomizeInitalDirection: 1
   collisionRadius: 0.5
