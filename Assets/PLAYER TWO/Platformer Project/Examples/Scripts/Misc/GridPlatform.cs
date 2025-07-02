@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,21 @@ public class GridPlatform : MonoBehaviour
 {
     public Transform platform;
     public float rotationDuration = 0.5f;
+
+    protected Player m_player;
+
+    protected Player player
+    {
+        get
+        {
+            if (!m_player)
+            {
+                m_player = FindObjectOfType<Player>();
+            }
+
+            return m_player;
+        }
+    }
 
     protected bool m_clockwise = true;
 
@@ -33,6 +49,6 @@ public class GridPlatform : MonoBehaviour
 
     protected void Start()
     {
-        FindObjectOfType<Player>().playerEvents.OnJump.AddListener(Move);
+        player.playerEvents.OnJump.AddListener(Move);
     }
 }

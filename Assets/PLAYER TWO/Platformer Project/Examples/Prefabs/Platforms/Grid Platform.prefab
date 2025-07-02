@@ -236,3 +236,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platform: {fileID: 6944897586245013453}
   rotationDuration: 0.5
+  availableDistance: 10
+  available: 1
