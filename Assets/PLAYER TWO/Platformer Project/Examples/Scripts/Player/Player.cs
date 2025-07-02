@@ -134,7 +134,7 @@ public class Player : Entity<Player>
         var canCoyoteJump = (jumpCounter == 0) && (Time.time < lastGroundTime + stats.current.coyoteJumpThreshold);
         var holdJump = !holding;
 
-        if ((isGrounded || canMultiJump || canCoyoteJump) && holdJump)
+        if ((isGrounded || onRails || canMultiJump || canCoyoteJump) && holdJump)
         {
             if (inputs.GetJumpDown())
             {

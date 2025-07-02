@@ -103,17 +103,14 @@ public abstract class Entity<T> : Entity where T : Entity<T>
 
     protected void FixedUpdate()
     {
-        if (controller.enabled || m_collider != null)
-        {
-            HandleContacts();
-        }
     }
 
     protected virtual void Update()
     {
-        if (controller.enabled)
+        if (controller.enabled || m_collider != null)
         {
             HandleGround();
+            HandleContacts();
             HandleState();
             HandleController();
             HandleSpline();
@@ -162,7 +159,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         m_collider.radius = controller.radius;
         m_collider.center = controller.center;
         m_collider.isTrigger = true;
-        m_collider.enabled = false;
+        m_collider.enabled = true;
     }
 
     protected virtual void HandleController()
@@ -173,7 +170,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
             return;
         }
 
-        transform.position = velocity * Time.deltaTime;
+        transform.position += velocity * Time.deltaTime;
     }
 
     public virtual void Accelerate(Vector3 direction, float turningDrag, float acceleration, float topSpeed)

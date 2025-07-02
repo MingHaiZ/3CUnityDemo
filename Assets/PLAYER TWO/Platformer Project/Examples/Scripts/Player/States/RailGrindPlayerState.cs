@@ -28,11 +28,9 @@ public class RailGrindPlayerState : PlayerState
 
     protected override void OnStep(Player player)
     {
-        Debug.Log("Rails");
         player.Jump();
         if (player.onRails)
         {
-            
             Evaluate(player, out var point, out var forward, out var upward, out var t);
 
             var direction = m_backwards ? -forward : forward;
@@ -51,7 +49,7 @@ public class RailGrindPlayerState : PlayerState
 
             m_speed = Mathf.Clamp(m_speed, player.stats.current.minGrindSpeed, player.stats.current.maxGrindSpeed);
 
-            Rotate(player, direction, upward);
+            RotateOnRail(player, direction, upward);
             player.velocity = direction * m_speed;
 
             if (player.rails.Spline.Closed || (t > 0 && t < 0.9f))
@@ -88,7 +86,7 @@ public class RailGrindPlayerState : PlayerState
         return player.originalHeight * 0.5f + player.stats.current.grindRadiusOffset;
     }
 
-    protected virtual void Rotate(Player player, Vector3 forward, Vector3 upward)
+    protected virtual void RotateOnRail(Player player, Vector3 forward, Vector3 upward)
     {
         if (forward != Vector3.zero)
         {
@@ -114,7 +112,7 @@ public class RailGrindPlayerState : PlayerState
         {
             m_lastDahTime = Time.time;
             m_speed = player.stats.current.grindDashForce;
-            player.playerEvents.OnDashStarted.Invoke();
+            player.playerEvents.OnDashStarted?.Invoke();
         }
     }
 }
