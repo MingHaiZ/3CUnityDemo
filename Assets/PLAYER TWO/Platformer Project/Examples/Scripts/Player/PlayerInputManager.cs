@@ -124,7 +124,7 @@ public class PlayerInputManager : MonoBehaviour
     public virtual bool GetJumpUp() => m_jump.WasReleasedThisFrame();
     public virtual bool GetPickAndDropDown() => m_pickAndDrop.WasPressedThisFrame();
     public virtual bool GetReleaseLedgeDown() => m_releaseLedge.WasPressedThisFrame();
-    public virtual bool GetGrindBrake() => m_grindBrake.WasPressedThisFrame();
+    public virtual bool GetGrindBrake() => m_grindBrake.IsPressed();
     public virtual bool GetDashDown() => m_Dash.WasPressedThisFrame();
 
 

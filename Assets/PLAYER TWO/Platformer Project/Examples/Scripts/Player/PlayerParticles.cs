@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerParticles : MonoBehaviour
 {
     public float walkDustMinSpeed = 3.5f;
     public float landingParticleMinSpeed = 5f;
+    public float dashParticleDelay = 1f;
     public ParticleSystem walkDust;
     public ParticleSystem hurtDust;
     public ParticleSystem landDust;
@@ -76,8 +78,16 @@ public class PlayerParticles : MonoBehaviour
 
     public virtual void OnDashStarted()
     {
+        StartCoroutine(PlayDashParticle());
+    }
+
+    protected IEnumerator PlayDashParticle()
+    {
         Play(dashDust);
         Play(speedTrails);
+        yield return new WaitForSeconds(dashParticleDelay);
+        Stop(dashDust, true);
+        Stop(speedTrails, true);
     }
 
     protected virtual void Start()

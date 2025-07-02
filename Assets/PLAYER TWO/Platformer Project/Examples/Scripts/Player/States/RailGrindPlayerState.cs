@@ -102,6 +102,7 @@ public class RailGrindPlayerState : PlayerState
         {
             var decelerationDelta = player.stats.current.grindBrakeDeceleration * Time.deltaTime;
             m_speed = Mathf.MoveTowards(m_speed, 0, decelerationDelta);
+            Debug.Log(m_speed);
         }
     }
 
