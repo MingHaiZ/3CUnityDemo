@@ -445,9 +445,15 @@ public class Player : Entity<Player>
 
     public virtual void Crouch()
     {
-        if (inputs.GetCrouchAndCraw())
+        if (inputs.GetCrouchAndCrawl())
         {
             states.Change<CrouchPlayerState>();
         }
+    }
+
+    public virtual void CrawlingAccelerate(Vector3 direction)
+    {
+        Accelerate(direction, stats.current.crawlingTurningSpeed, stats.current.crawlingAcceleration,
+            stats.current.crawlingTopSpeed);
     }
 }

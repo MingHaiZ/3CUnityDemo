@@ -30,15 +30,19 @@ MonoBehaviour:
   topSpeed: 6
   airAcceleration: 32
   deceleration: 28
+  slopeUpwardForce: 25
+  slopeDownwardForce: 28
   runningAcceleration: 16
   runningTopSpeed: 8.5
   runningTurnningDrag: 14
   canBackflip: 1
+  backflipLockMovement: 1
   backflipJumpHeight: 23
   backflipGravity: 35
   backflipTurningDrag: 2.5
   backflipAirAcceleration: 12
   backflipTopSpeed: 7.5
+  backflipBackwarForce: 4
   backflipBackwardTurnForce: 8
   multiJumps: 1
   coyoteJumpThreshold: 0.15
@@ -72,3 +76,30 @@ MonoBehaviour:
     m_Bits: 2561
   ledgeClimbingSkinOffset: {x: 0, y: 0, z: 0}
   leggeClimbingDuration: 1
+  useCustomCollision: 1
+  grindRadiusOffset: 0.26
+  minGrindInitialSpeed: 10
+  minGrindSpeed: 5
+  maxGrindSpeed: 25
+  canGrindBrake: 1
+  grindBrakeDeceleration: 10
+  canGrindDash: 1
+  applyGrindingSlopeFactor: 1
+  grindDashCoolDown: 0.5
+  grindDashForce: 25
+  waterConversion: 0.35
+  waterRotationSpeed: 360
+  waterUpwardForce: 8
+  waterJumpForce: 15
+  waterTurningDrag: 2.5
+  swimAcceleration: 4
+  swimDeceleration: 3
+  swimTopSpeed: 4
+  swimDiveForce: 15
+  teleportalCooldown: 1
+  crouchHeight: 1
+  crouchFriction: 10
+  crawlingAcceleration: 8
+  crawlingFriction: 32
+  crawlingTopSpeed: 2.5
+  crawlingTurningSpeed: 3

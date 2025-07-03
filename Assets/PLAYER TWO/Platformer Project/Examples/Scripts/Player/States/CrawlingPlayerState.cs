@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CrouchPlayerState : PlayerState
+public class CrawlingPlayerState : PlayerState
 {
     protected override void OnEnter(Player player)
     {
@@ -17,22 +17,19 @@ public class CrouchPlayerState : PlayerState
         player.Gravity();
         player.SnapToGround();
         player.Fall();
-        player.Decelerate(player.stats.current.crouchFriction);
+        player.Jump();
 
         var inputDirection = player.inputs.GetMovementCameraDirection();
 
         if (player.inputs.GetCrouchAndCrawl() || !player.canStandUp)
         {
-            if (inputDirection.sqrMagnitude > 0 && !player.holding)
+            if (inputDirection.magnitude > 0)
             {
-                //这里是防止跑步过程中蹲下能马上开始爬
-                if (player.lateralVelocity.sqrMagnitude == 0)
-                {
-                    player.states.Change<CrawlingPlayerState>();
-                }
-            } else if (player.inputs.GetJumpDown())
+                player.CrawlingAccelerate(inputDirection);
+                player.FaceDirectionSmooth(player.lateralVelocity);
+            } else
             {
-                player.Backflip(player.stats.current.backflipBackwarForce);
+                player.Decelerate(player.stats.current.crawlingFriction);
             }
         } else
         {

@@ -132,7 +132,7 @@ public class PlayerInputManager : MonoBehaviour
     public virtual bool GetGrindBrake() => m_grindBrake.IsPressed();
     public virtual bool GetDashDown() => m_Dash.WasPressedThisFrame();
     public virtual bool GetDive() => m_dive.IsPressed();
-    public virtual bool GetCrouchAndCraw() => m_crouch.IsPressed();
+    public virtual bool GetCrouchAndCrawl() => m_crouch.IsPressed();
 
 
     public virtual bool IsLookingWithMouse()

@@ -85,7 +85,6 @@ public class Enemy : Entity<Enemy>
     {
         HandleSight();
         ContactAttack();
-        print(states.current);
     }
 
     protected override void Awake()

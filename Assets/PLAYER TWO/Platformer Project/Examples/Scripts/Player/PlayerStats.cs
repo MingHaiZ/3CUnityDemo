@@ -136,5 +136,11 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float crouchHeight = 1f;
 
     public float crouchFriction = 10f;
-    
+
+    [Header("Crawling Stats")]
+    public float crawlingAcceleration = 8f;
+
+    public float crawlingFriction = 32f;
+    public float crawlingTopSpeed = 2.5f;
+    public float crawlingTurningSpeed = 3f;
 }
