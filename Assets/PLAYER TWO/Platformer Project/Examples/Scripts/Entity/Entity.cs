@@ -57,6 +57,8 @@ public abstract class Entity : MonoBehaviour
     public SplineContainer rails { get; protected set; }
     protected Rigidbody m_rigidbody;
     public bool onRails { get; set; }
+
+    public float lastTeleportalTime;
 }
 
 public abstract class Entity<T> : Entity where T : Entity<T>

@@ -126,4 +126,7 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float swimDeceleration = 3f;
     public float swimTopSpeed = 4f;
     public float swimDiveForce = 15f;
+
+    [Header("Portal Stats")]
+    public float teleportalCooldown = 1f;
 }

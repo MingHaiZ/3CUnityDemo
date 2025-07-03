@@ -62,6 +62,14 @@ public abstract class EntityStateManager<T> : EntityStateManager where T : Entit
             Change(m_states[type]);
         }
     }
+    
+    public virtual void Change(int to)
+    {
+        if (to >= 0 && to < m_List.Count)
+        {
+            Change(m_List[to]);
+        }
+    }
 
     public virtual void Change(EntityState<T> to)
     {

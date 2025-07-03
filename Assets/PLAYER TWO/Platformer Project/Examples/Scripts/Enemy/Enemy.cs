@@ -16,7 +16,7 @@ public class Enemy : Entity<Enemy>
     protected virtual void InitializeStatsManager() => stats = GetComponent<EnemyStatsManager>();
     protected virtual void InitializeWayPointManager() => waypoints = GetComponent<WayPointManager>();
 
-    
+
     public virtual void Accelerate(Vector3 direction, float acceleration, float topSpeed) =>
         Accelerate(direction, stats.current.turnningDrag, acceleration, topSpeed);
 
@@ -45,6 +45,8 @@ public class Enemy : Entity<Enemy>
         } else
         {
             var distance = Vector3.Distance(position, player.position);
+            print(distance);
+            print(player.health.current);
             if (player.health.current == 0 || (distance > stats.current.viewRange))
             {
                 player = null;
@@ -83,6 +85,7 @@ public class Enemy : Entity<Enemy>
     {
         HandleSight();
         ContactAttack();
+        print(states.current);
     }
 
     protected override void Awake()
