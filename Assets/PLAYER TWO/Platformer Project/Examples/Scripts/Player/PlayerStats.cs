@@ -143,4 +143,13 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float crawlingFriction = 32f;
     public float crawlingTopSpeed = 2.5f;
     public float crawlingTurningSpeed = 3f;
+
+    [Header("Air Dive Stats")]
+    public bool canAireDive = true;
+    public bool applyDiveSlopeFactor = true;
+    public float airDiveForwardForce = 16f;
+    public float airDiveFriction = 32f;
+    public float airDiveSlopeFriction = 12f;
+    public float airDiveGroundLeapHeight = 10f;
+    public float airDiveRotationSpeed = 45f;
 }

@@ -19,6 +19,7 @@ public class SpinPlayerState : PlayerState
         player.Gravity();
         player.SnapToGround();
         player.AccelerateToInputDirection();
+        player.AirDive();
 
         if (timeSinceEntered >= player.stats.current.spinDuration)
         {

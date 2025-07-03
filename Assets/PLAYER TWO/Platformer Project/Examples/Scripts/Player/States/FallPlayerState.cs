@@ -21,6 +21,7 @@ public class FallPlayerState : PlayerState
         player.PickAndThrow();
         player.StompAttack();
         player.LedgeGrab();
+        player.AirDive();
 
         if (player.isGrounded)
         {

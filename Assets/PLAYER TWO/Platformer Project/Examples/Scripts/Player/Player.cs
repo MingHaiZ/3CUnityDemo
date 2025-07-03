@@ -29,6 +29,7 @@ public class Player : Entity<Player>
     protected Quaternion m_respawnRotation;
 
     protected const float k_waterExitOffset = 0.25f;
+    protected readonly float m_slopingGroundAngle = 20f;
 
     public virtual bool canStandUp => !SphereCast(Vector3.up, originalHeight);
 
@@ -455,5 +456,45 @@ public class Player : Entity<Player>
     {
         Accelerate(direction, stats.current.crawlingTurningSpeed, stats.current.crawlingAcceleration,
             stats.current.crawlingTopSpeed);
+    }
+
+    public virtual void AirDive()
+    {
+        if (inputs.GetAirDiveDown() && stats.current.canAireDive && !holding && !isGrounded)
+        {
+            states.Change<AirDivePlayerState>();
+            playerEvents.OnAirDive?.Invoke();
+        }
+    }
+
+    public virtual void SlopeFactor(float upwardForce, float downWardForce)
+    {
+        if (!isGrounded || !OnSlopingGround())
+        {
+            return;
+        }
+
+        var factor = Vector3.Dot(Vector3.up, groundNormal);
+        var downwards = Vector3.Dot(localSlopeDirection, lateralVelocity) > 0;
+        var multiplier = downwards ? downWardForce : upwardForce;
+        var delta = factor * multiplier * Time.deltaTime;
+        lateralVelocity += localSlopeDirection * delta;
+    }
+
+    public virtual bool OnSlopingGround()
+    {
+        if (isGrounded && groundAngle > m_slopingGroundAngle)
+        {
+            if (Physics.Raycast(transform.position, -transform.up, out var hit, height * 2f,
+                    Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
+            {
+                return Vector3.Angle(hit.normal, Vector3.up) > m_slopingGroundAngle;
+            } else
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

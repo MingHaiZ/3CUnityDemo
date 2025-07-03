@@ -21,6 +21,7 @@ public class BackflipPlayerState : PlayerState
     {
         player.Gravity(player.stats.current.backflipGravity);
         player.BackflipAcceleration();
+        player.AirDive();
 
         if (player.isGrounded)
         {
