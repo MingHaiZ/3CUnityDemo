@@ -12,31 +12,27 @@ public class BrakePlayerState : PlayerState
 
     protected override void OnStep(Player player)
     {
-        // var inputDirection = player.inputs.GetMovementCameraDirection();
-        // if (player.stats.current.canBackflip
-        //     && Vector3.Dot(inputDirection, player.transform.forward) < 0
-        //     && player.inputs.GetJumpDown())
-        // {
-        //     player.Backflip(player.stats.current.backflipBackwardTurnForce);
-        // } else
-        // {
-        //     if (player.lateralVelocity.sqrMagnitude == 0)
-        //     {
-        //         player.states.Change<IdlePlayerState>();
-        //     }
-        // }
-        // player.Gravity();
-        player.Decelerate();
-        player.Fall();
-        if (player.lateralVelocity.magnitude == 0)
+        var inputDirection = player.inputs.GetMovementCameraDirection();
+        if (player.stats.current.canBackflip
+            && Vector3.Dot(inputDirection, player.transform.forward) < 0
+            && player.inputs.GetJumpDown())
         {
-            player.states.Change<IdlePlayerState>();
+            player.Backflip(player.stats.current.backflipBackwardTurnForce);
+        } else
+        {
+            
+            player.SnapToGround();
+            player.Jump();
+            player.Decelerate();
+            player.Fall();
+            if (player.lateralVelocity.magnitude == 0)
+            {
+                player.states.Change<IdlePlayerState>();
+            }
         }
     }
 
     public override void OnContact(Player entity, Collider other)
     {
-        
-        
     }
 }

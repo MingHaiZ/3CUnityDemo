@@ -40,12 +40,13 @@ public class PlayerStats : EntityStats<PlayerStats>
 
     [Header("Backflip Stats")]
     public bool canBackflip = true;
-
+    public bool backflipLockMovement = true;
     public float backflipJumpHeight = 23f;
     public float backflipGravity = 35f;
     public float backflipTurningDrag = 2.5f;
     public float backflipAirAcceleration = 12f;
     public float backflipTopSpeed = 7.5f;
+    public float backflipBackwarForce = 4f;
     public float backflipBackwardTurnForce = 8f;
 
     [Header("Jump Stats")]

@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerInputManager : MonoBehaviour
 {
     public InputActionAsset actions;
-    public float m_movementDirctionUnlock;
+    public float m_movementDirctionUnlockTime;
     protected InputAction m_movement;
     protected InputAction m_run;
     protected InputAction m_jump;
@@ -76,7 +77,7 @@ public class PlayerInputManager : MonoBehaviour
 
     public virtual Vector3 GetMovementDirection()
     {
-        if (Time.time < m_movementDirctionUnlock)
+        if (Time.time < m_movementDirctionUnlockTime)
         {
             return Vector3.zero;
         }
@@ -154,4 +155,9 @@ public class PlayerInputManager : MonoBehaviour
 
 
     public bool GetPauseDown() => m_pause.WasPressedThisFrame();
+
+    public virtual void LockMovementDirection(float duration = 0.25f)
+    {
+        m_movementDirctionUnlockTime = Time.time + duration;
+    }
 }

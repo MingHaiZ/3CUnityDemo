@@ -115,18 +115,6 @@ public class Player : Entity<Player>
         }
     }
 
-    // public virtual void Backflip(float force)
-    // {
-    //     if (stats.current.canBackflip)
-    //     {
-    //         verticalVelocity = Vector3.up * stats.current.backflipJumpHeight;
-    //         lateralVelocity = -transform.forward * force;
-    //         states.Change<BackflipPlayerState>();
-    //         playerEvents.OnBackflip.Invoke();
-    //     }
-    // }
-
-
     public virtual void BackflipAcceleration()
     {
         var direction = inputs.GetMovementCameraDirection();
@@ -157,6 +145,8 @@ public class Player : Entity<Player>
             states.Change<FallPlayerState>();
         }
     }
+
+    public virtual void SetJumps(int amount) => jumpCounter = amount;
 
     public virtual void Jump()
     {
@@ -403,6 +393,14 @@ public class Player : Entity<Player>
         }
     }
 
+    public virtual void BackflipAcceleration(int amount)
+    {
+        var direction = inputs.GetMovementCameraDirection();
+
+        Accelerate(direction, stats.current.backflipTurningDrag, stats.current.backflipAirAcceleration,
+            stats.current.backflipTopSpeed);
+    }
+
     public virtual void WaterAcceleration(Vector3 direction)
     {
         Accelerate(direction, stats.current.waterTurningDrag, stats.current.swimAcceleration,
@@ -430,6 +428,17 @@ public class Player : Entity<Player>
         if (onWater)
         {
             onWater = false;
+        }
+    }
+
+    public virtual void Backflip(float force)
+    {
+        if (stats.current.canBackflip && !holding)
+        {
+            verticalVelocity = Vector3.up * stats.current.backflipJumpHeight;
+            lateralVelocity = -transform.forward * force;
+            states.Change<BackflipPlayerState>();
+            playerEvents.OnBackflip?.Invoke();
         }
     }
 }
