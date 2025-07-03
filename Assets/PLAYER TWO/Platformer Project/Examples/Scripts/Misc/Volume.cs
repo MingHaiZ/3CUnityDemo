@@ -37,7 +37,7 @@ public class Volume : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!m_collider.bounds.Contains(other.bounds.max) && !m_collider.bounds.Contains(other.bounds.min))
+        if (!m_collider.bounds.Contains(other.bounds.max) || !m_collider.bounds.Contains(other.bounds.min))
         {
             m_audio.PlayOneShot(enterClip);
             onEnter?.Invoke();

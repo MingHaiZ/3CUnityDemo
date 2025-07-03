@@ -19,6 +19,7 @@ public class PlayerInputManager : MonoBehaviour
     protected InputAction m_releaseLedge;
     protected InputAction m_grindBrake;
     protected InputAction m_Dash;
+    protected InputAction m_dive;
     protected Camera m_camera;
     protected float? m_lastJumpTime;
     protected const float k_jumpBuffer = 0.15f;
@@ -68,6 +69,7 @@ public class PlayerInputManager : MonoBehaviour
         m_releaseLedge = actions["ReleaseLedge"];
         m_grindBrake = actions["Grind Brake"];
         m_Dash = actions["Dash"];
+        m_dive = actions["Dive"];
     }
 
     public virtual bool GetRun() => m_run.IsInProgress();
@@ -126,6 +128,7 @@ public class PlayerInputManager : MonoBehaviour
     public virtual bool GetReleaseLedgeDown() => m_releaseLedge.WasPressedThisFrame();
     public virtual bool GetGrindBrake() => m_grindBrake.IsPressed();
     public virtual bool GetDashDown() => m_Dash.WasPressedThisFrame();
+    public virtual bool GetDive() => m_dive.IsPressed();
 
 
     public virtual bool IsLookingWithMouse()

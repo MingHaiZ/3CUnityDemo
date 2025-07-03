@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6190058685139065676}
+  - component: {fileID: 5657227254692264279}
+  - component: {fileID: 1403494605679339091}
+  - component: {fileID: 2263163276612654650}
   m_Layer: 9
   m_Name: Life
   m_TagString: Untagged
@@ -33,6 +36,88 @@ Transform:
   - {fileID: 7011448252347666726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5657227254692264279
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146866450657051277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1403494605679339091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146866450657051277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbe2217f67e49588abf0306d66db440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: {fileID: 5419742949836923878}
+  particle: {fileID: 6212720214010653563}
+  ghostingDuration: 0.5
+  collectOnContact: 1
+  clip: {fileID: 8300000, guid: 69b91ce10ee80a944ba48baf3a88eb2f, type: 3}
+  times: 1
+  hidden: 0
+  quickShowHeight: 2
+  quickShowDuration: 0.25
+  hideDuration: 0.5
+  hasLifeTime: 0
+  lifeTimeDuration: 5
+  usePhysics: 0
+  gravity: 15
+  initialVelocity: {x: 0, y: 12, z: 0}
+  randomizeInitalDirection: 1
+  collisionRadius: 0.5
+  bounciness: 0.98
+  maxBounceYVelocity: 10
+  minBounceYVelocity: 3
+  collisionClip: {fileID: 0}
+  onCollect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2263163276612654650}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: AddRetries
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_ghosting: 1
+--- !u!114 &2263163276612654650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146866450657051277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6544a7d1d6f649fab2f0df49179f3281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5185792366681267895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +276,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b4f543697617334ab4ad3bd52ac4b64, type: 3}
+--- !u!198 &6212720214010653563 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3009243463858631249, guid: 0b4f543697617334ab4ad3bd52ac4b64, type: 3}
+  m_PrefabInstance: {fileID: 9221963437319117098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7011448252347666726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2213332211145148428, guid: 0b4f543697617334ab4ad3bd52ac4b64, type: 3}

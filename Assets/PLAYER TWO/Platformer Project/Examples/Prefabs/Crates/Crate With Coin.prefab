@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1249628468473373028}
   - component: {fileID: 3494500689838992716}
   - component: {fileID: 23735161815735991}
+  - component: {fileID: 7406708582894193220}
   m_Layer: 9
   m_Name: Crate With Coin
   m_TagString: Untagged
@@ -348,6 +349,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &7406708582894193220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6023500920834037938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6861528483f4ab59771f83585c282d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 10
 --- !u!1001 &4651588969067476146
 PrefabInstance:
   m_ObjectHideFlags: 0

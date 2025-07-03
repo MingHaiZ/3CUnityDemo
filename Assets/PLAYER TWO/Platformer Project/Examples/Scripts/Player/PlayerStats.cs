@@ -114,4 +114,16 @@ public class PlayerStats : EntityStats<PlayerStats>
 
     public float grindDashCoolDown = 0.5f;
     public float grindDashForce = 25f;
+
+    [Header("Swimming Stats")]
+    public float waterConversion = 0.35f;
+
+    public float waterRotationSpeed = 360f;
+    public float waterUpwardForce = 8f;
+    public float waterJumpForce = 15;
+    public float waterTurningDrag = 2.5f;
+    public float swimAcceleration = 4f;
+    public float swimDeceleration = 3f;
+    public float swimTopSpeed = 4f;
+    public float swimDiveForce = 15f;
 }

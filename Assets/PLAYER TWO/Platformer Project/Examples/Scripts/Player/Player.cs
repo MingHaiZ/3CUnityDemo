@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,6 +15,7 @@ public class Player : Entity<Player>
     public bool holding { get; protected set; }
     public Health health { get; protected set; }
     public bool onWater { get; protected set; }
+    public Collider water { get; protected set; }
     public int airSpinCount { get; protected set; }
     public Pickable pickable { get; protected set; }
 
@@ -25,6 +27,8 @@ public class Player : Entity<Player>
 
     protected Vector3 m_respawnPosition;
     protected Quaternion m_respawnRotation;
+
+    protected const float k_waterExitOffset = 0.25f;
 
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
@@ -66,6 +70,25 @@ public class Player : Entity<Player>
             ResetAirSpinCount();
             StartGrind();
         });
+    }
+
+    protected void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(GameTag.VolumeWater))
+        {
+            if (!onWater && other.bounds.Contains(unsizePosition))
+            {
+                EnterWater(other);
+            } else if (onWater)
+            {
+                var exitPoint = position + Vector3.down * k_waterExitOffset;
+
+                if (!other.bounds.Contains(exitPoint))
+                {
+                    ExitWater();
+                }
+            }
+        }
     }
 
     /**
@@ -377,6 +400,36 @@ public class Player : Entity<Player>
             skin.parent = transform;
             skin.localPosition = Vector3.zero;
             skin.localRotation = Quaternion.identity;
+        }
+    }
+
+    public virtual void WaterAcceleration(Vector3 direction)
+    {
+        Accelerate(direction, stats.current.waterTurningDrag, stats.current.swimAcceleration,
+            stats.current.swimTopSpeed);
+    }
+
+    public virtual void WaterFaceDirection(Vector3 direction)
+    {
+        FaceDirection(direction, stats.current.waterRotationSpeed);
+    }
+
+    public virtual void EnterWater(Collider water)
+    {
+        if (!onWater && !health.isEmpty)
+        {
+            Throw();
+            onWater = true;
+            this.water = water;
+            states.Change<SwimPlayerState>();
+        }
+    }
+
+    public virtual void ExitWater()
+    {
+        if (onWater)
+        {
+            onWater = false;
         }
     }
 }

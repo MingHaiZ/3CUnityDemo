@@ -215,7 +215,7 @@ MonoBehaviour:
   - DiePlayerState
   - BackflipPlayerState
   - BackflipPlayerState
-  - BackflipPlayerState
+  - SwimPlayerState
   - BackflipPlayerState
   - BackflipPlayerState
   - SpinPlayerState

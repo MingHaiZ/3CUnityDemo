@@ -12,7 +12,7 @@ public class Buoyancy : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
     }
 
-    protected void OnTriggerEnter(Collider other)
+    protected void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(GameTag.VolumeWater))
         {
