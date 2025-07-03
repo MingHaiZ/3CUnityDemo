@@ -21,6 +21,7 @@ public class PlayerInputManager : MonoBehaviour
     protected InputAction m_grindBrake;
     protected InputAction m_Dash;
     protected InputAction m_dive;
+    protected InputAction m_crouch;
     protected Camera m_camera;
     protected float? m_lastJumpTime;
     protected const float k_jumpBuffer = 0.15f;
@@ -71,6 +72,7 @@ public class PlayerInputManager : MonoBehaviour
         m_grindBrake = actions["Grind Brake"];
         m_Dash = actions["Dash"];
         m_dive = actions["Dive"];
+        m_crouch = actions["Crouch"];
     }
 
     public virtual bool GetRun() => m_run.IsInProgress();
@@ -130,6 +132,7 @@ public class PlayerInputManager : MonoBehaviour
     public virtual bool GetGrindBrake() => m_grindBrake.IsPressed();
     public virtual bool GetDashDown() => m_Dash.WasPressedThisFrame();
     public virtual bool GetDive() => m_dive.IsPressed();
+    public virtual bool GetCrouchAndCraw() => m_crouch.IsPressed();
 
 
     public virtual bool IsLookingWithMouse()

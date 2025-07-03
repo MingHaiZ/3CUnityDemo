@@ -19,6 +19,7 @@ public class IdlePlayerState : PlayerState
         player.PickAndThrow();
         player.Friction();
         player.Spin();
+        player.Crouch();
         // 输出方向
         var inputDirection = player.inputs.GetMovementDirection();
 

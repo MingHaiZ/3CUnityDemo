@@ -77,6 +77,13 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         return Physics.SphereCast(position, radius, direction, out hit, castDistance, layerMask,
             queryTriggerInteraction);
     }
+    
+    public virtual bool SphereCast(Vector3 direction, float distance,
+        int layerMask = Physics.DefaultRaycastLayers,
+        QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore)
+    {
+        return SphereCast(direction, distance, out _, layerMask, queryTriggerInteraction);
+    }
 
     protected virtual void InitializeController()
     {

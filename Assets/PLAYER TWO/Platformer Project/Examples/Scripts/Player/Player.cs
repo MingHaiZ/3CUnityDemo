@@ -30,6 +30,8 @@ public class Player : Entity<Player>
 
     protected const float k_waterExitOffset = 0.25f;
 
+    public virtual bool canStandUp => !SphereCast(Vector3.up, originalHeight);
+
     protected virtual void InitializeInputs() => inputs = GetComponent<PlayerInputManager>();
     protected virtual void InitializeStats() => stats = GetComponent<PlayerStatsManager>();
     protected virtual void InitializeHealth() => health = GetComponent<Health>();
@@ -393,14 +395,6 @@ public class Player : Entity<Player>
         }
     }
 
-    public virtual void BackflipAcceleration(int amount)
-    {
-        var direction = inputs.GetMovementCameraDirection();
-
-        Accelerate(direction, stats.current.backflipTurningDrag, stats.current.backflipAirAcceleration,
-            stats.current.backflipTopSpeed);
-    }
-
     public virtual void WaterAcceleration(Vector3 direction)
     {
         Accelerate(direction, stats.current.waterTurningDrag, stats.current.swimAcceleration,
@@ -439,6 +433,21 @@ public class Player : Entity<Player>
             lateralVelocity = -transform.forward * force;
             states.Change<BackflipPlayerState>();
             playerEvents.OnBackflip?.Invoke();
+        }
+    }
+
+    public virtual void ResizeCollider(float height)
+    {
+        var delta = height - this.height;
+        controller.height = height;
+        controller.center += Vector3.up * delta * 0.5f;
+    }
+
+    public virtual void Crouch()
+    {
+        if (inputs.GetCrouchAndCraw())
+        {
+            states.Change<CrouchPlayerState>();
         }
     }
 }

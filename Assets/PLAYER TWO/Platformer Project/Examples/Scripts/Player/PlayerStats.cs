@@ -40,6 +40,7 @@ public class PlayerStats : EntityStats<PlayerStats>
 
     [Header("Backflip Stats")]
     public bool canBackflip = true;
+
     public bool backflipLockMovement = true;
     public float backflipJumpHeight = 23f;
     public float backflipGravity = 35f;
@@ -130,4 +131,10 @@ public class PlayerStats : EntityStats<PlayerStats>
 
     [Header("Portal Stats")]
     public float teleportalCooldown = 1f;
+
+    [Header("Crouch Stats")]
+    public float crouchHeight = 1f;
+
+    public float crouchFriction = 10f;
+    
 }

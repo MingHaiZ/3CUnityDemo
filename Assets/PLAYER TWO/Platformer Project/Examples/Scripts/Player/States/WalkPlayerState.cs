@@ -18,6 +18,7 @@ public class WalkPlayerState : PlayerState
         player.Fall();
         player.Spin();
         player.PickAndThrow();
+        player.Crouch();
 
         var inputDirection = player.inputs.GetMovementCameraDirection();
 
