@@ -11,6 +11,10 @@ TagManager:
   - Platform
   - Volume/Water
   - Interactive/Rail
+  - Surface/Metal
+  - Surface/Grass
+  - Surface/Wood
+  - Pole
   layers:
   - Default
   - TransparentFX
@@ -25,7 +29,7 @@ TagManager:
   - Ignore Ledge Hanging
   - Ignore Ledge Climbing
   - Unstable Surface
-  - 
+  - Ignore Wall Sliding
   - 
   - 
   - 

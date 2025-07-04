@@ -180,4 +180,14 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float wallDragGravity = 12f;
     public float wallJumpDistance = 12f;
     public float wallJumpHeight = 15f;
+
+    [Header("Pole Climbing Stats")]
+    public bool canPoleClimb = true;
+
+    public Vector3 poleClimbSkinOffset;
+    public float climbUpSpeed = 3f;
+    public float climbDownSpeed = 8f;
+    public float climbRotationSpeed = 2f;
+    public float poleJumpDistance = 8f;
+    public float poleJumpHeight = 15f;
 }

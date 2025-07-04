@@ -23,7 +23,6 @@ public class FallingPlatform : MonoBehaviour, IEntityContact
 
     public void Start()
     {
-        tag = GameTag.Spring;
         m_collider = GetComponent<Collider>();
         m_initialPosition = transform.position;
     }

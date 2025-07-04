@@ -52,6 +52,7 @@ public class AirDivePlayerState : PlayerState
         if (!player.isGrounded)
         {
             player.WallDrag(other);
+            player.GrabPole(other);
         }
     }
 }

@@ -39,5 +39,6 @@ public class BackflipPlayerState : PlayerState
     {
         player.PushRigidbody(other);
         player.WallDrag(other);
+        player.GrabPole(other);
     }
 }

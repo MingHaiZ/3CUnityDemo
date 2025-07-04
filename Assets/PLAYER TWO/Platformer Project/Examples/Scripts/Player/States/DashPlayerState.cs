@@ -34,5 +34,6 @@ public class DashPlayerState : PlayerState
     {
         player.PushRigidbody(other);
         player.WallDrag(other);
+        player.GrabPole(other);
     }
 }

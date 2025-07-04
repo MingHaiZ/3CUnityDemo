@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : Entity<Player>
 {
@@ -18,7 +13,8 @@ public class Player : Entity<Player>
     public Collider water { get; protected set; }
     public int airSpinCount { get; protected set; }
     public Pickable pickable { get; protected set; }
-
+    public Pole pole { get; protected set; }
+    
     public Transform pickableSlot;
     public Transform skin;
 
@@ -563,6 +559,15 @@ public class Player : Entity<Player>
                 lastWallNormal = hit.normal;
                 states.Change<WallDragPlayerState>();
             }
+        }
+    }
+
+    public virtual void GrabPole(Collider other)
+    {
+        if (stats.current.canPoleClimb && verticalVelocity.y <= 0 && !holding && other.TryGetComponent(out Pole pole))
+        {
+            this.pole = pole;
+            states.Change<PoleClimbingPlayerState>();
         }
     }
 }

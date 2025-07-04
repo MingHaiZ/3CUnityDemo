@@ -35,5 +35,6 @@ public class FallPlayerState : PlayerState
     {
         player.PushRigidbody(other);
         player.WallDrag(other);
+        player.GrabPole(other);
     }
 }
