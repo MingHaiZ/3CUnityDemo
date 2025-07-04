@@ -23,6 +23,7 @@ public class FallPlayerState : PlayerState
         player.LedgeGrab();
         player.AirDive();
         player.Glide();
+        player.Dash();
 
         if (player.isGrounded)
         {

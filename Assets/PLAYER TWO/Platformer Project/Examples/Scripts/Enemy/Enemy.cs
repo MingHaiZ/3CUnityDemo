@@ -45,8 +45,6 @@ public class Enemy : Entity<Enemy>
         } else
         {
             var distance = Vector3.Distance(position, player.position);
-            print(distance);
-            print(player.health.current);
             if (player.health.current == 0 || (distance > stats.current.viewRange))
             {
                 player = null;

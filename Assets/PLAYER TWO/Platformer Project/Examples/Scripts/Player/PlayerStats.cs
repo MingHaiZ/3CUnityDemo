@@ -160,4 +160,13 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float glidingGravity = 10f;
     public float glidingMaxFallSpeed = 2f;
     public float glidingTurningDrag = 8f;
+
+    [Header("Dash Stats")]
+    public bool canAirDash = true;
+
+    public bool canGroundDash = true;
+    public float dashForce = 25f;
+    public float dashDuration = 0.3f;
+    public float groundDashCoolDown = 0.5f;
+    public int allowedAirDashes = 1;
 }

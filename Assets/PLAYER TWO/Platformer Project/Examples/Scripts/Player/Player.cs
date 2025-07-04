@@ -30,6 +30,8 @@ public class Player : Entity<Player>
 
     protected const float k_waterExitOffset = 0.25f;
     protected readonly float m_slopingGroundAngle = 20f;
+    public int airDashCounter { get; protected set; }
+    public float lastDashTime { get; protected set; }
 
     public virtual bool canStandUp => !SphereCast(Vector3.up, originalHeight);
 
@@ -47,7 +49,9 @@ public class Player : Entity<Player>
     public virtual void Decelerate() => Decelerate(stats.current.deceleration);
     public virtual void Friction() => Decelerate(stats.current.friction);
     public virtual void ResetJumps() => jumpCounter = 0;
+    public virtual void ResetAirDashCounter() => airDashCounter = 0;
     public virtual void InitializeTag() => tag = GameTag.Player;
+
 
     public virtual void StartGrind() => states.Change<RailGrindPlayerState>();
 
@@ -65,6 +69,7 @@ public class Player : Entity<Player>
         {
             ResetJumps();
             ResetAirSpinCount();
+            ResetAirDashCounter();
         });
 
         entityEvents.OnRailsEnter.AddListener(() =>
@@ -112,9 +117,12 @@ public class Player : Entity<Player>
 
         Accelerate(direction, turningDrag, finalAcceleration, topSpeed);
 
-        if (!inputs.GetRun())
+        if (!states.IsCurrentOfType(typeof(DashPlayerState)))
         {
-            lateralVelocity = Vector3.ClampMagnitude(lateralVelocity, topSpeed);
+            if (!inputs.GetRun())
+            {
+                lateralVelocity = Vector3.ClampMagnitude(lateralVelocity, topSpeed);
+            }
         }
     }
 
@@ -503,6 +511,23 @@ public class Player : Entity<Player>
         if (inputs.GetGlide() && !isGrounded && !holding && verticalVelocity.y <= 0 && stats.current.canGlide)
         {
             states.Change<GlidingPlayerState>();
+        }
+    }
+
+    public virtual void Dash()
+    {
+        var canAirDash = stats.current.canAirDash && !isGrounded && airDashCounter < stats.current.allowedAirDashes;
+        var canGroundDash = stats.current.canGroundDash && isGrounded &&
+                            Time.time > lastDashTime + stats.current.groundDashCoolDown;
+        if (inputs.GetDashDown() && (canAirDash || canGroundDash))
+        {
+            if (!isGrounded)
+            {
+                airDashCounter++;
+            }
+
+            lastDashTime = Time.time;
+            states.Change<DashPlayerState>();
         }
     }
 }

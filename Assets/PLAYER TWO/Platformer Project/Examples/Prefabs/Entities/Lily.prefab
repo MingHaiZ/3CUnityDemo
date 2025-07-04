@@ -259,7 +259,7 @@ MonoBehaviour:
   - LedgeClimbingPlayerState
   - BackflipPlayerState
   - GlidingPlayerState
-  - IdlePlayerState
+  - DashPlayerState
   - RailGrindPlayerState
 --- !u!114 &5910283242886582421
 MonoBehaviour:
