@@ -14,7 +14,7 @@ public class Player : Entity<Player>
     public int airSpinCount { get; protected set; }
     public Pickable pickable { get; protected set; }
     public Pole pole { get; protected set; }
-    
+
     public Transform pickableSlot;
     public Transform skin;
 
@@ -41,6 +41,15 @@ public class Player : Entity<Player>
     {
         m_respawnPosition = transform.position;
         m_respawnRotation = transform.rotation;
+    }
+
+    protected virtual void InitializeSkinRotation()
+    {
+        if (skin)
+        {
+            m_skinInitialPosition = skin.localPosition;
+            m_skinInitialRotation = skin.localRotation;
+        }
     }
 
     public virtual void FaceDirectionSmooth(Vector3 direction) => FaceDirection(direction, stats.current.rotationSpeed);

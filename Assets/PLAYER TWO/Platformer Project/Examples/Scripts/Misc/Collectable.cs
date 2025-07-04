@@ -236,7 +236,7 @@ public class Collectable : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         InitializeAudio();
         InitializeCollider();

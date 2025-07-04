@@ -68,4 +68,15 @@ public class LevelScore : Singleton<LevelScore>
             m_game.RequestSaving();
         }
     }
+
+    public virtual void CollectStar(int index)
+    {
+        if (index >= m_stars.Length)
+        {
+            return;
+        }
+
+        m_stars[index] = true;
+        OnStarsSet.Invoke(m_stars);
+    }
 }

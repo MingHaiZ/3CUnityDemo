@@ -37,7 +37,7 @@ public class Health : MonoBehaviour
         {
             current -= Mathf.Abs(amount);
             m_lastDamageTime = Time.time;
-            OnDamage?.Invoke();
+            OnDamage.Invoke();
         }
     }
 

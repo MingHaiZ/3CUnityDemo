@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 7938864663223423289}
   - component: {fileID: 4516549893959073674}
   - component: {fileID: 5220703973612443751}
+  - component: {fileID: 4356589851230051537}
+  - component: {fileID: 4499518978060481137}
   m_Layer: 0
   m_Name: Lily
   m_TagString: Untagged
@@ -453,6 +455,37 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 62beeddcf3aaeb1408518db5d8b64251, type: 3}
   footStepVolume: 0.5
   stepOffset: 1.25
+--- !u!114 &4356589851230051537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219701247475986322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8779378b754c46298ef61334499ccc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 5685897590133091438}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.5
+--- !u!114 &4499518978060481137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219701247475986322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e738d442dde4028b7a1f4e7404103e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 6646512120838783423}
+  maxTiltAngle: 15
+  tiltSmoothTime: 0.2
 --- !u!1 &2973316817680818135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +1891,11 @@ Animator:
 --- !u!4 &1090205519415923007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6298516059911872515, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
+  m_PrefabInstance: {fileID: 6361865368257376572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5685897590133091438 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1630794972795428178, guid: 40e21d8ce79cdf04a9168a06cb1ed52e, type: 3}
   m_PrefabInstance: {fileID: 6361865368257376572}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6900459822473959127 stripped

@@ -94,6 +94,7 @@ public abstract class Entity<T> : Entity where T : Entity<T>
         }
 
         controller.skinWidth = 0.005f;
+        controller.stepOffset = 0.3f;
         controller.minMoveDistance = 0;
         originalHeight = controller.height;
     }
