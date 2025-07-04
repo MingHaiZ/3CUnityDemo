@@ -30,6 +30,8 @@ public class Player : Entity<Player>
 
     protected const float k_waterExitOffset = 0.25f;
     protected readonly float m_slopingGroundAngle = 20f;
+
+    public Vector3 lastWallNormal { get; protected set; }
     public int airDashCounter { get; protected set; }
     public float lastDashTime { get; protected set; }
 
@@ -528,6 +530,40 @@ public class Player : Entity<Player>
 
             lastDashTime = Time.time;
             states.Change<DashPlayerState>();
+        }
+    }
+
+    public virtual void RegularSlopeFactor()
+    {
+        if (stats.current.applySlopeFactor)
+        {
+            SlopeFactor(stats.current.slopeUpwardForce, stats.current.slopeDownwardForce);
+        }
+    }
+
+    public virtual void DirectionalJump(Vector3 direction, float height, float distance)
+    {
+        jumpCounter++;
+        verticalVelocity = Vector3.up * height;
+        lateralVelocity = direction * distance;
+        playerEvents.OnJump.Invoke();
+    }
+
+    public virtual void WallDrag(Collider other)
+    {
+        if (stats.current.canWallDrag && velocity.y <= 0 && !holding && !other.TryGetComponent(out Rigidbody _))
+        {
+            if (CapsuleCast(transform.forward, 0.25f, out var hit, stats.current.wallDragLayers) &&
+                !DetectingLedge(0.25f, height, out _))
+            {
+                if (hit.collider.CompareTag(GameTag.Platform))
+                {
+                    transform.parent = hit.transform;
+                }
+
+                lastWallNormal = hit.normal;
+                states.Change<WallDragPlayerState>();
+            }
         }
     }
 }

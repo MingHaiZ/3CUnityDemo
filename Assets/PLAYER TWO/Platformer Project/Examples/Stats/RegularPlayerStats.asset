@@ -30,6 +30,7 @@ MonoBehaviour:
   topSpeed: 6
   airAcceleration: 32
   deceleration: 28
+  applySlopeFactor: 1
   slopeUpwardForce: 25
   slopeDownwardForce: 28
   runningAcceleration: 16
@@ -103,3 +104,29 @@ MonoBehaviour:
   crawlingFriction: 32
   crawlingTopSpeed: 2.5
   crawlingTurningSpeed: 3
+  canAireDive: 1
+  applyDiveSlopeFactor: 1
+  airDiveForwardForce: 16
+  airDiveFriction: 32
+  airDiveSlopeFriction: 12
+  airDiveGroundLeapHeight: 10
+  airDiveRotationSpeed: 45
+  canGlide: 1
+  glidingGravity: 10
+  glidingMaxFallSpeed: 2
+  glidingTurningDrag: 8
+  canAirDash: 1
+  canGroundDash: 1
+  dashForce: 25
+  dashDuration: 0.3
+  groundDashCoolDown: 0.5
+  allowedAirDashes: 1
+  canWallDrag: 1
+  wallJumpLockMovement: 1
+  wallDragLayers:
+    serializedVersion: 2
+    m_Bits: 3585
+  wallDragSkinOffset: {x: 0, y: 0, z: 0}
+  wallDragGravity: 12
+  wallJumpDistance: 8
+  wallJumpHeight: 15

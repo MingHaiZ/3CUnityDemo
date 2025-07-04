@@ -120,7 +120,11 @@ public class PlayerCamera : MonoBehaviour
 
     protected virtual bool VerticalFollowingStates()
     {
-        return false;
+        return player.states.IsCurrentOfType(typeof(SwimPlayerState)) ||
+               player.states.IsCurrentOfType(typeof(WallDragPlayerState)) ||
+               player.states.IsCurrentOfType(typeof(LedgeHangingPlayerState)) ||
+               player.states.IsCurrentOfType(typeof(LedgeClimbingPlayerState)) ||
+               player.states.IsCurrentOfType(typeof(RailGrindPlayerState));
     }
 
     protected virtual void HandleOffset()

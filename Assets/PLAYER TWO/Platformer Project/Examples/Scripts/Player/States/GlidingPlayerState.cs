@@ -33,6 +33,7 @@ public class GlidingPlayerState : PlayerState
 
     public override void OnContact(Player player, Collider other)
     {
+        player.WallDrag(other);
     }
 
     protected virtual void HandleGlidingGravity(Player player)

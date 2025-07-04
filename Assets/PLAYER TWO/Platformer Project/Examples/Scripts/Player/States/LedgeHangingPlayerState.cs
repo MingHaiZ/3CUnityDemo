@@ -17,6 +17,8 @@ public class LedgeHangingPlayerState : PlayerState
         m_keepParent = false;
         player.skin.position += player.transform.rotation * player.stats.current.ledgeHangingSkinOffset;
         player.ResetJumps();
+        player.ResetAirSpinCount();
+        player.ResetAirDashCounter();
     }
 
     protected override void OnExit(Player player)

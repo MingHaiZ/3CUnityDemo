@@ -20,6 +20,7 @@ public class WalkPlayerState : PlayerState
         player.PickAndThrow();
         player.Crouch();
         player.Dash();
+        player.RegularSlopeFactor();
 
         var inputDirection = player.inputs.GetMovementCameraDirection();
 

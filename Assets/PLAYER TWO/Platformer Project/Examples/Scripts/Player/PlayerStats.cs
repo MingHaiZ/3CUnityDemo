@@ -29,6 +29,7 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float topSpeed = 6f;
     public float airAcceleration = 32f;
     public float deceleration = 28f;
+    public bool applySlopeFactor = true;
     public float slopeUpwardForce = 25f;
     public float slopeDownwardForce = 28f;
 
@@ -169,4 +170,14 @@ public class PlayerStats : EntityStats<PlayerStats>
     public float dashDuration = 0.3f;
     public float groundDashCoolDown = 0.5f;
     public int allowedAirDashes = 1;
+
+    [Header("WallDrag Stats")]
+    public bool canWallDrag = true;
+
+    public bool wallJumpLockMovement = true;
+    public LayerMask wallDragLayers;
+    public Vector3 wallDragSkinOffset;
+    public float wallDragGravity = 12f;
+    public float wallJumpDistance = 12f;
+    public float wallJumpHeight = 15f;
 }

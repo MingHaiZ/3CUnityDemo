@@ -38,5 +38,6 @@ public class BackflipPlayerState : PlayerState
     public override void OnContact(Player player, Collider other)
     {
         player.PushRigidbody(other);
+        player.WallDrag(other);
     }
 }

@@ -20,6 +20,7 @@ public class IdlePlayerState : PlayerState
         player.Friction();
         player.Spin();
         player.Crouch();
+        player.RegularSlopeFactor();
         // 输出方向
         var inputDirection = player.inputs.GetMovementDirection();
 

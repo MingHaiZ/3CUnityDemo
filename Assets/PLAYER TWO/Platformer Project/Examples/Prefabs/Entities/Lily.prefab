@@ -247,7 +247,7 @@ MonoBehaviour:
   - FallPlayerState
   - HurtPlayerState
   - DiePlayerState
-  - IdlePlayerState
+  - WallDragPlayerState
   - IdlePlayerState
   - SwimPlayerState
   - CrouchPlayerState
