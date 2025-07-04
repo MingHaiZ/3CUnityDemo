@@ -146,10 +146,18 @@ public class PlayerStats : EntityStats<PlayerStats>
 
     [Header("Air Dive Stats")]
     public bool canAireDive = true;
+
     public bool applyDiveSlopeFactor = true;
     public float airDiveForwardForce = 16f;
     public float airDiveFriction = 32f;
     public float airDiveSlopeFriction = 12f;
     public float airDiveGroundLeapHeight = 10f;
     public float airDiveRotationSpeed = 45f;
+
+    [Header("Gliding Stats")]
+    public bool canGlide = true;
+
+    public float glidingGravity = 10f;
+    public float glidingMaxFallSpeed = 2f;
+    public float glidingTurningDrag = 8f;
 }

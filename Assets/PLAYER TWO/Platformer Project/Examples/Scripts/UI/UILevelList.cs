@@ -16,7 +16,6 @@ public class UILevelList : MonoBehaviour
         for (int i = 0; i < levels.Count; i++)
         {
             var uiLevelCard = Instantiate(card, container);
-            print(uiLevelCard);
             m_cardList.Add(uiLevelCard);
             m_cardList[i].Fill(levels[i]);
         }

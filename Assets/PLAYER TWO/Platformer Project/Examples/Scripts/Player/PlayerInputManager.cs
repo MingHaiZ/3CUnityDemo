@@ -23,6 +23,7 @@ public class PlayerInputManager : MonoBehaviour
     protected InputAction m_dive;
     protected InputAction m_crouch;
     protected InputAction m_airDive;
+    protected InputAction m_glide;
     protected Camera m_camera;
     protected float? m_lastJumpTime;
     protected const float k_jumpBuffer = 0.15f;
@@ -75,6 +76,7 @@ public class PlayerInputManager : MonoBehaviour
         m_dive = actions["Dive"];
         m_crouch = actions["Crouch"];
         m_airDive = actions["AirDive"];
+        m_glide = actions["Glide"];
     }
 
     public virtual bool GetRun() => m_run.IsInProgress();
@@ -136,6 +138,7 @@ public class PlayerInputManager : MonoBehaviour
     public virtual bool GetDive() => m_dive.IsPressed();
     public virtual bool GetCrouchAndCrawl() => m_crouch.IsPressed();
     public virtual bool GetAirDiveDown() => m_airDive.WasPressedThisFrame();
+    public virtual bool GetGlide() => m_glide.IsPressed();
 
 
     public virtual bool IsLookingWithMouse()
