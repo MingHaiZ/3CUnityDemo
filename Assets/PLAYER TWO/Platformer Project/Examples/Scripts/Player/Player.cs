@@ -53,8 +53,7 @@ public class Player : Entity<Player>
     public virtual void ResetJumps() => jumpCounter = 0;
     public virtual void ResetAirDashCounter() => airDashCounter = 0;
     public virtual void InitializeTag() => tag = GameTag.Player;
-
-
+    public virtual bool IsAlive() => !health.isEmpty;
     public virtual void StartGrind() => states.Change<RailGrindPlayerState>();
 
     protected override void Awake()
